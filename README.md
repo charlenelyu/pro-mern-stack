@@ -4,6 +4,10 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ## Chapter 2
 
+In this chapter, I learned to use React to render a simple page and use Node.js and Express to serve that page from a web server. I used nvm to install Node.js, then practiced with how to use npm not just to install node packages, but also to customize command-line instructions. I also got familiar with Babel, which allows us to transform JSX into pure JavaScript and to convert JavaScript into a backwards compatible version to support older browsers.
+
+![ch02](/readme-images/ch02.png)
+
 ### notes
 
 - Server-Less HelloWorld
@@ -27,13 +31,23 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - e.g. the built-in `express.static()` function generates a middleware function. It matches the request URL with a file in the directory specified by the parameter. If a file exists, return the contents of the file as the response, if not, chain to the next middleware function.
   - For the application to use the static middleware, we need to mount it with the `use()` method of the application.
   - The `listen()` method of the application starts the server and waits eternally for requests.
-  - Before using the `npm start` command line to start the server, we need to add the correct entry to the `scripts` section of `package.json`.
+  - We can use `node <server-js-file>` command to run the server, or use the `npm start` command after adding the correct entry to the `scripts` section of `package.json`.
 - Separate Script File
   - Separate out the JSX and JavaScript and refer to it as an external script.
   - This way, we can keep the HTML as pure HTML and all the script that needs compilation in a separate file.
 - JSX Transform
   - Move the transformation of JSX to JavaScript from runtime to build time.
-  - First install required Babel tools. Then transform JSX into pure JavaScript using `npx babel` command. Finally, make corresponding changes in the html file (remove the script type specification and the imported runtime transformer library).
+    - First, install required Babel tools (`core`, `cli`, `preset-react`).
+    - Then transform JSX into pure JavaScript using `npx babel` command. After this step, we'll see new files with the extension `.js` in the output directory.
+    - Finally, make corresponding changes in the html file (change the reference to reflect the new extension, remove the script type specification and the imported runtime transformer library).
+- Older Browser Support
+  - Install Babel preset called `preset-env`. It can specify the target browsers that we need to support and automatically apply all the transforms and plugins that are required to support those browsers.
+  - `.babelrc` is Babel's configuration file that can specify the presets that need to be used. If we contain presets in this file, the `npx babel` command can be run without specifying any presets.
+  - Even with Babel's transformation work, code may still not work because of some missing built-ins such as `Array.find()`. *Polyfills* are required to add these new functions’ implementations. Babel provides these polyfills too.
+- Automate
+  - npm custom commands can be specified in the `scripts` section of `package.json`. These can then be run using `npm run <script>` from the console.
+  - To automate transforms, add `"compile": "babel src --out-dir public"`.
+  - To automate recompilation upon client-side code changes, add `"start": "nodemon -w server server/server.js"` (requires to install nodemon first).
 
 ### troubleshooting
 
