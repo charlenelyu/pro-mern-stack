@@ -4,6 +4,10 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ## Chapter 3
 
+In this chapter, I started to use React classes to instantiate components. I laid out the main page of the Issue Tracker  by generating components dynamically from data and composing them together. I also learned how to pass data from a parent component to its children, which allows us to reuse a component class and to make it to render differently with different data.
+
+![ch03](/readme-images/ch03.png)
+
 ### notes
 
 - React Classes
@@ -22,8 +26,15 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 - Passing Data Using Children
   - Another way to pass data is to use the contents of the HTML-like node of the component. In the child component, this can be accessed via `this.props.children`.
   - Now, instead of passing data as a property to child components, we can embed it as the child contents like `<[child-class-name] ...> [data] </[child-class-name]>`
-
-### troubleshooting
+- Dynamic Composition
+  - In this section, we'll generate a set of components from an array to replace the hard-coded components, and include more fields in the table as well.
+  - Modify parent component:
+    - Use `map()` method to iterate over the array.
+    - The header row in the table will now have more columns. Instead of specifying the style for each cell, We can create a class for the table, and use CSS to style the table and each table-cell. This needs to be part of `index.html`. After that, we can remove the inline `style` attribute from all the table-cells and table-headers.
+    - Last of all we need to identify each instance with an attribute called `key`. The value of this key has to uniquely identify a row.
+  - Modify child component:
+    - Remove all the inline `style` attribute
+    - add few more columns
 
 ---
 
