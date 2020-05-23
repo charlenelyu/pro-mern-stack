@@ -10,6 +10,9 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - React classes are used to create real components.
   - React classes are created by extending `React.Component`. Within the body, at least a `render()` method is needed, otherwise the component will have no screen presence.
   - The `render()` function is supposed to return an element, which can be either a native HTML element such as a `<div>` or an instance of another React component.
+- Composing Components
+  - Component composition allows the UI to be split into smaller independent pieces so that each piece can be coded in isolation and can be reused easily.
+  - React’s philosophy prefers component composition in preference to inheritance.
 
 ### troubleshooting
 
