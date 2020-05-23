@@ -10,9 +10,18 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - React classes are used to create real components.
   - React classes are created by extending `React.Component`. Within the body, at least a `render()` method is needed, otherwise the component will have no screen presence.
   - The `render()` function is supposed to return an element, which can be either a native HTML element such as a `<div>` or an instance of another React component.
+  - React classes can be instantiated by `<[class-name] />`.
 - Composing Components
   - Component composition allows the UI to be split into smaller independent pieces so that each piece can be coded in isolation and can be reused easily.
   - React’s philosophy prefers component composition in preference to inheritance.
+- Passing Data Using Properties
+  - A component takes inputs (called properties), so we can pass different data from a parent component to a child component and make it render differently on different instances.
+  - The easiest way to pass data to child components is using an attribute when instantiating a component. Within the `render()` method of the child, the attribute’s value can be accessed via `this.props.[atrribute]`, where `props` is a special object variable.
+  - In most cases, the name of the attribute is the same as the HTML attribute. To avoid conflicts, there are some different naming requirements, like `class` in HTML -> `className` in JSX, hyphen-based-names in HTML-> camelCasedNames in JSX.
+  - For the `style` attribute, rather than a CSS kind of string, React needs it to be specified as an object containing JavaScript key-value pairs. The keys are the same as the CSS style name, except that they are camel cased. The values are CSS style values.
+- Passing Data Using Children
+  - Another way to pass data is to use the contents of the HTML-like node of the component. In the child component, this can be accessed via `this.props.children`.
+  - Now, instead of passing data as a property to child components, we can embed it as the child contents like `<[child-class-name] ...> [data] </[child-class-name]>`
 
 ### troubleshooting
 
