@@ -2,6 +2,12 @@
 
 This is my repository for the project described in the book Pro MERN Stack (2nd Ed) by Vasan Subramanian.
 
+# Chapter 5
+
+### notes
+
+---
+
 ## Chapter 4
 
 In this chapter, I learned how to use React state and how it can be manipulated on user interactions or other events. I added two text input fields and a button for the Issue Tracker to let users append rows to the initial list of issues. A click of the button will cause the state to change and the components to rerender. One important point during this process is that we use *props* to pass the state and the method around between a child and its parent.
