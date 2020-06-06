@@ -6,6 +6,24 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ### notes
 
+- Initial State
+  - React uses a data structure called *state* in a component to make it respond to user input and other events.
+  - The state of a component is captured in a variable called `this.state` in the component’s class, which should be an object where each key is a state variable name and the value is the current value of that variable.
+  - Setting the initial state needs to be done in the constructor of the component.
+  - The state essentially holds mutable data, as opposed to the immutable properties in the form of `props` that we saw earlier. This state needs to be used in the `render()` method to build the view. When data or the state changes, React automatically rerenders the view to show the new changed data.
+  - It is useful to store in the state anything that affects the rendered view and can change due to any event.
+- Async State Initialization
+  - Typically, instead of having the initial state available to us, we need to fetch data from the server via an API call.
+  - Firstly, the state is assigned a value in the constructor. After that, the state can be modified via a call to `React.Component`’s `this.setState()` method. This method takes in one argument, which is an object containing all the changed state variables and their values.
+  - We should not call `this.setState()` within the constructor, because the constructor only constructs the component and does not render the UI. If the initial page is complex and takes time to render, and the Ajax call returns before rendering is finished, you will get an error.
+  - React provides methods called *lifecycle methods* to cater to situations where something needs to be done depending on the stage, or changes in the status of the component. We can add one of the methods to the component's class and load the data within it.
+    - `componentDidMount()`: This method is called as soon as the component’s representation has been converted and inserted into the DOM.
+    - `componentDidUpdate()`: This method is invoked immediately after an update occurs, but it is not called for the initial render. The method also takes the previous props and previous state as arguments, so that it can check the differences between the previous props and state and the current props and state before taking an action.
+    - `componentWillUnmount()`: This method is useful for cleanup such as cancelling timers and pending network requests.
+    - `shouldComponentUpdate()`: This method can be used to optimize and prevent a rerender in case there is a change in the props or state that really doesn’t affect the output or the view. This method is rarely used.
+
+---
+
 ## Chapter 3
 
 In this chapter, I started to use React classes to instantiate components. I laid out the main page of the Issue Tracker  by generating components dynamically from data and composing them together. I also learned how to pass data from a parent component to its children, which allows us to reuse a component class and to make it to render differently with different data.
