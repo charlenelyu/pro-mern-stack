@@ -28,10 +28,20 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - React automatically propagates any changes to child components that depend on the parent component’s state, so there's no need for us to explicitly call a `setState()` on the child components.
 - Lifting State Up
   - One way that allows sibling classes to communicate with each other is to have the common parent.
-  - In this example, we'll lift the state up on level to `IssueList`, so that information can be propagated down to `IssueAdd` and to `IssueTable`.
+  - In the Issue Tracker example, we'll lift the state up on level to `IssueList`, so that information can be propagated down to `IssueAdd` and to `IssueTable`.
     - First, move the state and other methods that deal with the state to the `IssueList` class. After that, to provide `IssueTable` with access to the array of issues, we need to pass it from the state within `IssueList` to `IssueTable` via `props`. Then in the`IssueTable` class, instead of referring to the array of issues via `this.state`, we’ll need to get it from `props`.
     - Second, move the timer to the constructor of the `IssueAdd` class. At the same time, we have to make `createIssue()` method available in the `IssueAdd` class by passing the method as part of the `props`.
     - Last of all, before passing the method around, we have to bind the method to the `IssueList` component using `.bind()` since we're using arrow functions. It's recommended to do this in the constructor of the class where the method is implemented.
+- Event Handling
+  - In the Issue Tracker example, we want to allow users to add an issue interactively on the click of a button.
+    - First, create a form with two text inputs and a button used to trigger the event in the `render()` method of `IssueAdd`. At the same time, we can remove the timer that creates an issue from the constructor.
+    - When clicking the button, we want it to call `createIssue()` using the input values, and we want to prevent the form from being submitted because we will handle the event ourselves. We’ll create a method called `handleSubmit()` to finish this task.
+    - Rewrite the form declaration with a name and an `onSubmit` handler. Then, implement the method `handleSubmit()`. This method calls the `preventDefault()` on the event to prevent the form from being submitted, creates a new issue by calling `createIssue()`, and clears the text input fields.
+    - Like the previous section, `handleSubmit()` needs to be bound to the `IssueAdd` class.
+- Stateless Components
+  - For components that have nothing but a `render()` method (like `IssueRow` and `IssueTable` in the Issue Tracker example), it is recommended that they are written as functions rather than classes.
+  - If a component does not depend on `props`, it can be written as a simple function whose name is the component name.
+  - If the rendering depends on the `props` alone, the function can be written with one argument as the `props`.
 
 ---
 
