@@ -32,18 +32,39 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - Strongly typed: all fields and arguments have a type against which both queries and results can be validated. It's also possible to specify which fields and arguments are required and which others are optional. All this is done by the GraphQL schema language.
   - Introspection: a GraphQL server can be queried for the types it supports. This let developers test and learn an API set quickly.
 - The About API: in this section, the goal is to implement a simple API called About that returns a string, as well as another API that lets us change the string.
-  - Install packages `graphql`, `apollo-server-express`
-  - Define the schema using the `type` keyword
+  - Install packages `graphql`, `apollo-server-express`.
+  - Define the schema using the `type` keyword.
     - For the About API, the basic data type `String` is enough.
     - GraphQL schema has two special types called `Query` and `Mutation`. All other APIs or fields are defined hierarchically under these two types, which are like the entry points into the API. A schema must have at least the `Query` type.
     - In addition to specifying the type, the schema language has a provision to indicate whether the value is optional or mandatory. By default, all values are optional (i.e., they can be null), and those that require a value are defined by adding an exclamation character `!` after the type.
     - Note that all arguments must be named, and all fields must have a type, and there is no void indicating that the field returns nothing. To overcome this, we can just use any data type and make it optional so that the caller does not expect a value.
-  - Define *resolvers* that can be called when fields are accessed
+  - Define *resolvers* that can be called when fields are accessed.
     - The implementation of resolvers depends on the programming language we use.
     - Each field needs to be resolved using a function of the same name as the field.
   - Initialize the GraphQL server by constructing an `ApolloServer` object. The constructor takes in an object with at least two properties, `typeDefs` and `resolvers`, and returns a GraphQL server object.
   - Install the Apollo Server as a middleware in Express using the `applyMiddleware()` method of the `ApolloServer` object.
-  - One tool called `Playground` is available by default as part of the Apollo Server and can be accessed simply by browsing the API endpoint (http://localhost:3000/ graphql). This tool helps us to explore the API.
+  - One tool called `Playground` is available by default as part of the Apollo Server and can be accessed simply by browsing the API endpoint (<http://localhost:3000/graphql>). This tool helps us to explore the API.
+- GraphQL Schema File
+  - When schema grows bigger, it's useful to separate the schema into a file of its own.
+  - Create a new file, `schema.graphql`. To read the contents of the file, use the `fs` module and the `readFileSync()` function.
+  - Change the `nodemon` tool by adding an `-e` option specifying all the extensions it needs to watch for. In this case, let’s specify `js` and `graphql` as the two extensions for this option.
+- The List API: in this section, we'll implement an API to fetch a list of issues.
+  - Define a custom type called `Issue`.
+  - Add a new field under `Query` to return a list of issues. The GraphQL way to specify a list of another type is to enclose it within square brackets `[]`.
+  - Separate the top-level `Query` and `Mutation` definitions from the custom types using a comment, which beginns with `#`.
+  - In the server code, add a resolver under `Query` for the new field.
+- List API Integration: in this section, we will modify the `IssueList` React component in order to fetch data from the server.
+  - To use the APIs, we need to make asynchronous API calls. Modern browsers support Ajax calls natively via the Fetch API.
+  - Within the `loadData()` method, construct a GraphQL query, which is a simple string. Send this query string as the value for the `query` property within a JSON, as part of the body to the `fetch` request. The method we’ll use is POST and we’ll add a header that indicates that the content type is JSON.
+  - Once the response arrives, we can get the JSON data converted to a JavaScript object using the `response.json()` method. Finally, call a `setState()` to supply the list of issues to the state variable called `issues`. Note that we need to add the keyword `async` for `loadData()` function.
+  - Since a string instead of a `Date` object is used to represent the date, we need to remove the conversions in the `IssueRow` component’s `render()` method. We can also now remove the global variable `initialIssues`.
+- Custom Scalar Types (to fix the string-formatted dates)
+  - The recommended string format for transferring `Date` objects in a JSON is the ISO 8601 format. It is also the same format used by JavaScript `Date`’s `toJSON()` method. It's easy to convert a date to this string format using either `toJSON()` or `toISOString()` methods of `Date`, as well as to convert it back to a date using `new Date(dateString)`.
+  - Although GraphQL does not support dates natively, it has support for custom scalar types. After creating a custom scalar type date, it can be used just as any native scalar type like `String` and `Int`.
+    - Define a type for the scalar using the `scalar` keyword.
+    - Add a top-level resolver for all scalar types, which handles both serialization (on the way out) as well as parsing (on the way in) via class methods.
+  - Now, in `App.jsx`, we can convert the string to the native `Date` type.
+    - A better way do this is to pass a *reviver* function to the JSON `parse()` function.
 
 ### troubleshooting
 
