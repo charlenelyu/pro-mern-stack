@@ -25,6 +25,29 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 - REST (representational state transfer) API
   - Resource based: resources are accessed based on a Uniform Resource Identifier (URI), also known as an *endpoint*.
   - HTTP methods as actions: to access and manipulate the resources, you use HTTP methods
+- GraphQL
+  - Field specification: in a REST API, specifying no fields of an object will return the entire object, while in GraphQL, it is invalid to request nothing. The properties of an object that need to be returned must be specified.
+  - Graph based: REST APIs are resource based, while GraphQL is graph based. This means that relationships between objects are naturally handled in GraphQL APIs.
+  - Single endpoint: GraphQL API servers have a single endpoint in contrast to one endpoint per resource in REST.
+  - Strongly typed: all fields and arguments have a type against which both queries and results can be validated. It's also possible to specify which fields and arguments are required and which others are optional. All this is done by the GraphQL schema language.
+  - Introspection: a GraphQL server can be queried for the types it supports. This let developers test and learn an API set quickly.
+- The About API: in this section, the goal is to implement a simple API called About that returns a string, as well as another API that lets us change the string.
+  - Install packages `graphql`, `apollo-server-express`
+  - Define the schema using the `type` keyword
+    - For the About API, the basic data type `String` is enough.
+    - GraphQL schema has two special types called `Query` and `Mutation`. All other APIs or fields are defined hierarchically under these two types, which are like the entry points into the API. A schema must have at least the `Query` type.
+    - In addition to specifying the type, the schema language has a provision to indicate whether the value is optional or mandatory. By default, all values are optional (i.e., they can be null), and those that require a value are defined by adding an exclamation character `!` after the type.
+    - Note that all arguments must be named, and all fields must have a type, and there is no void indicating that the field returns nothing. To overcome this, we can just use any data type and make it optional so that the caller does not expect a value.
+  - Define *resolvers* that can be called when fields are accessed
+    - The implementation of resolvers depends on the programming language we use.
+    - Each field needs to be resolved using a function of the same name as the field.
+  - Initialize the GraphQL server by constructing an `ApolloServer` object. The constructor takes in an object with at least two properties, `typeDefs` and `resolvers`, and returns a GraphQL server object.
+  - Install the Apollo Server as a middleware in Express using the `applyMiddleware()` method of the `ApolloServer` object.
+  - One tool called `Playground` is available by default as part of the Apollo Server and can be accessed simply by browsing the API endpoint (http://localhost:3000/ graphql). This tool helps us to explore the API.
+
+### troubleshooting
+
+- On **page 92**, the command for installing npm packages should be `npm install graphql@0 apollo-server-express@2.3`, which sets the dependencies for `apollo-server-express` to version 2.3+. Otherwise, there will be a `cannot find module` error when trying to start the server.
 
 ---
 
