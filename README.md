@@ -6,6 +6,26 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ### notes
 
+- Express
+  - Middleware: an Express application is essentially a series of middleware function calls.
+    - Middleware functions are those that have access to the request object (`req`), the response object (`res`), and the next middleware function in the application’s request-response cycle. The next middleware function is commonly denoted by a variable named `next`.
+    - Middleware can be at the application level (applies to all requests) or at a specific path level (applies to specific request path patterns).
+    - To use a middleware at the application level, we simply supply the function to the application, like `app.use(middlewareFunction);`.
+    - To use a middleware at a specific path level, the `app.use()` method have to be called with two arguments, the first one being the path, like `app.use('/public', express.static('public'));`.
+  - Routing: Express takes a client request, matches it against any routes that are present, and executes the handler function that is associated with that route.
+    - A middleware function deals with any request matching the path specification, regardless of the HTTP method. In contrast, a route can match a request with a specific HTTP method.
+    - A route specification consists of an HTTP method, a path specification, and the route handler. The handler is passed in a request object and a response object.
+  - Request matching: when a request is received, the first thing that Express does is match the request to one of the routes. Further, the request URL is matched with the path specification, which is the first argument in the route. When a HTTP request matches this specification, the handler function is called.
+  - Route parameters: named segments in the path specification that match a part of the URL. If a match occurs, the value in that part of the URL is supplied as a variable in the request object.
+    - e.g. for `app.get('/customers/:customerId', ...)`, URLs like `/customers/1234`, `/customers/4567` will match the route specification. The customer ID will be captured and supplied to the handler function as part of the request in `req.params`, with the name of the parameter as the key. Thus, `req.params.customerId` will have the value `1234` or `4567` for each of these URLs.
+  - Route lookup: multiple routes can be set up to match different URLs and patterns. The router tries to match all routes in the order in which they are installed, and the first match is used. So, the routes have to be defined in the order of priority.
+  - Handler function
+    - Any aspect of the request can be inspected using the request object’s properties and methods. Some useful properties and methods are `req.params`, `req.query`, `req.header`, `req.get(header)`, `req.path`, `req.url`, `req.originalURL`, `req.body`.
+    - The response object is used to construct and send a response. Note that if no response is sent, the client is left waiting. Some useful methods are `res.send(body)`, `res.status(code)`, `res.json(object)`, `res.sendFile(path)`.
+- REST (representational state transfer) API
+  - Resource based: resources are accessed based on a Uniform Resource Identifier (URI), also known as an *endpoint*.
+  - HTTP methods as actions: to access and manipulate the resources, you use HTTP methods
+
 ---
 
 ## Chapter 4
