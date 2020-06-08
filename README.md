@@ -31,7 +31,7 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - Single endpoint: GraphQL API servers have a single endpoint in contrast to one endpoint per resource in REST.
   - Strongly typed: all fields and arguments have a type against which both queries and results can be validated. It's also possible to specify which fields and arguments are required and which others are optional. All this is done by the GraphQL schema language.
   - Introspection: a GraphQL server can be queried for the types it supports. This let developers test and learn an API set quickly.
-- The About API: in this section, the goal is to implement a simple API called About that returns a string, as well as another API that lets us change the string.
+- The About API: in this section, we will implement a simple API called About that returns a string, as well as another API that lets us change the string.
   - Install packages `graphql`, `apollo-server-express`.
   - Define the schema using the `type` keyword.
     - For the About API, the basic data type `String` is enough.
@@ -65,6 +65,11 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - Add a top-level resolver for all scalar types, which handles both serialization (on the way out) as well as parsing (on the way in) via class methods.
   - Now, in `App.jsx`, we can convert the string to the native `Date` type.
     - A better way do this is to pass a *reviver* function to the JSON `parse()` function.
+- The Create API: in this section, we will implement an API for creating a new issue in the server, which will be appended to the list of issues in the server’s memory.
+  - Define a field in the schema under `Mutation` called `issueAdd`.
+    - Since this field need to take multiple arguments, one for each property of the issue being added, we can define a new type called `issueInputs` as an object that has the fields we need for the input.
+    - GraphQL needs a different specification when it comes to input types. Instead of using the `type` keyword, we have to use the `input` keyword.
+  - Define a resolver for `issueAdd` that takes in an `IssueInput` type and creates a new issue in the in-memory database.
 
 ### troubleshooting
 
