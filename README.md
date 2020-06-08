@@ -4,6 +4,10 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 # Chapter 5
 
+In this chapter, I spent most of my time integrating with the back-end. The biggest change is that I started fetching and storing the data using APIs from the Express and Node.js server, which replaced the hard-coded array of issues in the browser’s memory. Using GraphQL, I learned how to build the C and R part of CRUD. I also saw how easy some of the validations were to implement and how the strong type system of GraphQL helps avoid errors and makes the APIs self-documenting. 
+
+![ch05](/readme-images/ch05.png)
+
 ### notes
 
 - Express
@@ -70,10 +74,29 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - Since this field need to take multiple arguments, one for each property of the issue being added, we can define a new type called `issueInputs` as an object that has the fields we need for the input.
     - GraphQL needs a different specification when it comes to input types. Instead of using the `type` keyword, we have to use the `input` keyword.
   - Define a resolver for `issueAdd` that takes in an `IssueInput` type and creates a new issue in the in-memory database.
+- Create API Integration
+  - Before making the API call, we need a query with the values of the fields filled in. Use a template string to generate such a query within the `createIssue()` method in `IssueList`.
+  - Use this query to execute `fetch` asynchronously.
+- Query Variables
+  - Using query strings for dynamic user input can be quite erroe-prone. Instead, we can use *variables* in GraphQL to factor dynamic values out of the query and pass them as a separate dictionary.
+  - To use variables, we have to name the operation first, which is done by specifying a name right after the `query` or `mutation` field specification.
+  - Next, the input value has to be replaced with a variable name. Variable names start with the `$` character.
+  - To supply the value of the variable, we need to send it across in a JSON object that is separate from the query string.
+- Input Validations
+  - A common way to validate input in GraphQL schema is to use enumeration types (*enums*). These will be dealt with as strings both in the client as well as in the server.
+  - GraphQL schema supplies default values in case the input is not given. This can be done by adding an `=` symbol and the default value after the type specification.
+  - For programmatic validations, we have to have them before saving a new issue in `server.js`.
+- Display Errors
+  - Create a common utility function called `graphQLFetch` that handles all API calls and report errors. This will be an async function since we’ll be calling `fetch()` using `await`.
+  - All transport errors will be thrown from within the call to `fetch()`, so the call to `fetch()` and the subsequent retrieval of the body should be within a `try-catch` block.
+  - Display Errors using `alert` in the `catch` block.
+  - Once the `fetch` is complete, we’ll look for errors as part of `result.errors`. The error code can be found within `error.extensions.code`. For `BAD_USER_INPUT`, we’ll need to join all the validation errors together and show it to the user. For all other error codes, we’ll display the code and the message as they are received.
+  - Finally, return `result.data` in this utility function.  The caller can check if any data was returned, and if so, use that.
 
 ### troubleshooting
 
 - On **page 92**, the command for installing npm packages should be `npm install graphql@0 apollo-server-express@2.3`, which sets the dependencies for `apollo-server-express` to version 2.3+. Otherwise, there will be a `cannot find module` error when trying to start the server.
+- On page 125 Listing 5-17: the function shown as `function validateIssue(_, { issue })` should be `function issueValidate(issue)`.
 
 ---
 

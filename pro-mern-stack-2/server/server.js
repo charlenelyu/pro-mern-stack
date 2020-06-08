@@ -1,6 +1,6 @@
 const fs = require('fs');
 const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
+const { ApolloServer, UserInputError } = require('apollo-server-express');
 const { GraphQLScalarType } = require('graphql');
 const { Kind } = require('graphql/language');
 
@@ -26,10 +26,14 @@ const GraphQLDate = new GraphQLScalarType({
     return value.toISOString();
   },
   parseValue(value) {
-    return new Date(value);
+    const dateValue = new Date(value);
+    return isNaN(dateValue) ? undefined : dateValue;
   },
   parseLiteral(ast) {
-    return (ast.kind == Kind.STRING) ? new Date(ast.value) : undefined;
+    if (ast.kind == Kind.STRING) {
+      const value = new Date(ast.value);
+      return isNaN(value) ? undefined : value;
+    }
   },
 });
 
@@ -45,14 +49,27 @@ const resolvers = {
   GraphQLDate,
 };
 
+function issueValidate(issue) {
+  const errors = [];
+  if (issue.title.length < 3) {
+    errors.push('Field "title" must be at least 3 characters long.')
+  }
+  if (issue.status == 'Assigned' && !issue.owner) {
+    errors.push('Field "owner" is required when status is "Assigned"');
+  }
+  if (errors.length > 0) {
+    throw new UserInputError('Invalid input(s)', { errors });
+  }
+}
+
 function setAboutMessage(_, { message }) {
   return aboutMessage = message;
 }
 
 function issueAdd(_, { issue }) {
+  issueValidate(issue);
   issue.created = new Date();
   issue.id = issuesDB.length + 1;
-  if (issue.status == undefined) issue.status = 'New';
   issuesDB.push(issue);
   return issue;
 }
@@ -64,6 +81,10 @@ function issueList() {
 const server = new ApolloServer({
   typeDefs: fs.readFileSync('./server/schema.graphql', 'utf-8'),
   resolvers,
+  formatError: error => {
+    console.log(error);
+    return error;
+  },
 });
 
 const app = express();
