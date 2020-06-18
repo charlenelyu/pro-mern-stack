@@ -10,7 +10,7 @@ In this chapter, I spent most of my time integrating with the back-end. The bigg
 
 ### notes
 
-<datails>
+<details>
 <summary>click for details</summary>
 
 - Express
@@ -95,6 +95,7 @@ In this chapter, I spent most of my time integrating with the back-end. The bigg
   - Display Errors using `alert` in the `catch` block.
   - Once the `fetch` is complete, we’ll look for errors as part of `result.errors`. The error code can be found within `error.extensions.code`. For `BAD_USER_INPUT`, we’ll need to join all the validation errors together and show it to the user. For all other error codes, we’ll display the code and the message as they are received.
   - Finally, return `result.data` in this utility function.  The caller can check if any data was returned, and if so, use that.
+
 </details>
 
 ### troubleshooting
@@ -112,7 +113,7 @@ In this chapter, I learned how to use React state and how it can be manipulated 
 
 ### notes
 
-<datails>
+<details>
 <summary>click for details</summary>
 
 - Initial State
@@ -151,6 +152,7 @@ In this chapter, I learned how to use React state and how it can be manipulated 
   - For components that have nothing but a `render()` method (like `IssueRow` and `IssueTable` in the Issue Tracker example), it is recommended that they are written as functions rather than classes.
   - If a component does not depend on `props`, it can be written as a simple function whose name is the component name.
   - If the rendering depends on the `props` alone, the function can be written with one argument as the `props`.
+
 </details>
 
 ---
@@ -163,7 +165,7 @@ In this chapter, I started to use React classes to instantiate components. I lai
 
 ### notes
 
-<datails>
+<details>
 <summary>click for details</summary>
 
 - React Classes
@@ -191,6 +193,7 @@ In this chapter, I started to use React classes to instantiate components. I lai
   - Modify child component:
     - Remove all the inline `style` attribute
     - add few more columns
+
 </details>
 
 ---
@@ -203,7 +206,7 @@ In this chapter, I learned to use React to render a simple page and use Node.js 
 
 ### notes
 
-<datails>
+<details>
 <summary>click for details</summary>
 
 - Server-Less HelloWorld
@@ -244,6 +247,7 @@ In this chapter, I learned to use React to render a simple page and use Node.js 
   - npm custom commands can be specified in the `scripts` section of `package.json`. These can then be run using `npm run <script>` from the console.
   - To automate transforms, add `"compile": "babel src --out-dir public"`.
   - To automate recompilation upon client-side code changes, add `"start": "nodemon -w server server/server.js"` (requires to install nodemon first).
+
 </details>
 
 ### troubleshooting
