@@ -19,7 +19,6 @@ In this chapter, I spent most of my time integrating with the back-end. The bigg
 
 <datails>
 <summary>click for details</summary>
-
 - Express
   - Middleware: an Express application is essentially a series of middleware function calls.
     - Middleware functions are those that have access to the request object (`req`), the response object (`res`), and the next middleware function in the application’s request-response cycle. The next middleware function is commonly denoted by a variable named `next`.
@@ -102,7 +101,6 @@ In this chapter, I spent most of my time integrating with the back-end. The bigg
   - Display Errors using `alert` in the `catch` block.
   - Once the `fetch` is complete, we’ll look for errors as part of `result.errors`. The error code can be found within `error.extensions.code`. For `BAD_USER_INPUT`, we’ll need to join all the validation errors together and show it to the user. For all other error codes, we’ll display the code and the message as they are received.
   - Finally, return `result.data` in this utility function.  The caller can check if any data was returned, and if so, use that.
-
 </details>
 
 ### troubleshooting
