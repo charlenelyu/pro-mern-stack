@@ -2,6 +2,13 @@
 
 This is my repository for the project described in the book Pro MERN Stack (2nd Ed) by Vasan Subramanian.
 
+# Table of Contents
+
+- [Chapter5] (#Chapter 5)
+- [Chapter4] (#Chapter 4)
+- [Chapter3] (#Chapter 3)
+- [Chapter2] (#Chapter 2)
+
 # Chapter 5
 
 In this chapter, I spent most of my time integrating with the back-end. The biggest change is that I started fetching and storing the data using APIs from the Express and Node.js server, which replaced the hard-coded array of issues in the browser’s memory. Using GraphQL, I learned how to build the C and R part of CRUD. I also saw how easy some of the validations were to implement and how the strong type system of GraphQL helps avoid errors and makes the APIs self-documenting. 
@@ -9,6 +16,9 @@ In this chapter, I spent most of my time integrating with the back-end. The bigg
 ![ch05](/readme-images/ch05.png)
 
 ### notes
+
+<datails>
+<summary>click for details</summary>
 
 - Express
   - Middleware: an Express application is essentially a series of middleware function calls.
@@ -93,6 +103,8 @@ In this chapter, I spent most of my time integrating with the back-end. The bigg
   - Once the `fetch` is complete, we’ll look for errors as part of `result.errors`. The error code can be found within `error.extensions.code`. For `BAD_USER_INPUT`, we’ll need to join all the validation errors together and show it to the user. For all other error codes, we’ll display the code and the message as they are received.
   - Finally, return `result.data` in this utility function.  The caller can check if any data was returned, and if so, use that.
 
+</details>
+
 ### troubleshooting
 
 - On **page 92**, the command for installing npm packages should be `npm install graphql@0 apollo-server-express@2.3`, which sets the dependencies for `apollo-server-express` to version 2.3+. Otherwise, there will be a `cannot find module` error when trying to start the server.
@@ -107,6 +119,9 @@ In this chapter, I learned how to use React state and how it can be manipulated 
 ![ch04](/readme-images/ch04.png)
 
 ### notes
+
+<datails>
+<summary>click for details</summary>
 
 - Initial State
   - React uses a data structure called *state* in a component to make it respond to user input and other events.
@@ -145,6 +160,8 @@ In this chapter, I learned how to use React state and how it can be manipulated 
   - If a component does not depend on `props`, it can be written as a simple function whose name is the component name.
   - If the rendering depends on the `props` alone, the function can be written with one argument as the `props`.
 
+</details>
+
 ---
 
 ## Chapter 3
@@ -154,6 +171,9 @@ In this chapter, I started to use React classes to instantiate components. I lai
 ![ch03](/readme-images/ch03.png)
 
 ### notes
+
+<datails>
+<summary>click for details</summary>
 
 - React Classes
   - React classes are used to create real components.
@@ -181,6 +201,8 @@ In this chapter, I started to use React classes to instantiate components. I lai
     - Remove all the inline `style` attribute
     - add few more columns
 
+</details>
+
 ---
 
 ## Chapter 2
@@ -190,6 +212,9 @@ In this chapter, I learned to use React to render a simple page and use Node.js 
 ![ch02](/readme-images/ch02.png)
 
 ### notes
+
+<datails>
+<summary>click for details</summary>
 
 - Server-Less HelloWorld
   - The React library is available as a JavaScript file that be included in the HTML file using the `<script>` tag.
@@ -229,6 +254,8 @@ In this chapter, I learned to use React to render a simple page and use Node.js 
   - npm custom commands can be specified in the `scripts` section of `package.json`. These can then be run using `npm run <script>` from the console.
   - To automate transforms, add `"compile": "babel src --out-dir public"`.
   - To automate recompilation upon client-side code changes, add `"start": "nodemon -w server server/server.js"` (requires to install nodemon first).
+
+</details>
 
 ### troubleshooting
 
