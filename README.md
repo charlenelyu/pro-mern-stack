@@ -2,16 +2,9 @@
 
 This is my repository for the project described in the book Pro MERN Stack (2nd Ed) by Vasan Subramanian.
 
-# Table of Contents
-
-- [Chapter5] (#Chapter 5)
-- [Chapter4] (#Chapter 4)
-- [Chapter3] (#Chapter 3)
-- [Chapter2] (#Chapter 2)
-
 # Chapter 5
 
-In this chapter, I spent most of my time integrating with the back-end. The biggest change is that I started fetching and storing the data using APIs from the Express and Node.js server, which replaced the hard-coded array of issues in the browser’s memory. Using GraphQL, I learned how to build the C and R part of CRUD. I also saw how easy some of the validations were to implement and how the strong type system of GraphQL helps avoid errors and makes the APIs self-documenting. 
+In this chapter, I spent most of my time integrating with the back-end. The biggest change is that I started fetching and storing the data using APIs from the Express and Node.js server, which replaced the hard-coded array of issues in the browser’s memory. Using GraphQL, I learned how to build the C and R part of CRUD. I also saw how easy some of the validations were to implement and how the strong type system of GraphQL helps avoid errors and makes the APIs self-documenting.
 
 ![ch05](/readme-images/ch05.png)
 
@@ -19,6 +12,7 @@ In this chapter, I spent most of my time integrating with the back-end. The bigg
 
 <datails>
 <summary>click for details</summary>
+
 - Express
   - Middleware: an Express application is essentially a series of middleware function calls.
     - Middleware functions are those that have access to the request object (`req`), the response object (`res`), and the next middleware function in the application’s request-response cycle. The next middleware function is commonly denoted by a variable named `next`.
@@ -157,7 +151,6 @@ In this chapter, I learned how to use React state and how it can be manipulated 
   - For components that have nothing but a `render()` method (like `IssueRow` and `IssueTable` in the Issue Tracker example), it is recommended that they are written as functions rather than classes.
   - If a component does not depend on `props`, it can be written as a simple function whose name is the component name.
   - If the rendering depends on the `props` alone, the function can be written with one argument as the `props`.
-
 </details>
 
 ---
@@ -198,7 +191,6 @@ In this chapter, I started to use React classes to instantiate components. I lai
   - Modify child component:
     - Remove all the inline `style` attribute
     - add few more columns
-
 </details>
 
 ---
@@ -252,7 +244,6 @@ In this chapter, I learned to use React to render a simple page and use Node.js 
   - npm custom commands can be specified in the `scripts` section of `package.json`. These can then be run using `npm run <script>` from the console.
   - To automate transforms, add `"compile": "babel src --out-dir public"`.
   - To automate recompilation upon client-side code changes, add `"start": "nodemon -w server server/server.js"` (requires to install nodemon first).
-
 </details>
 
 ### troubleshooting
