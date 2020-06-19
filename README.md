@@ -64,6 +64,19 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
       - The pipeline specification is an array of objects, each element being an object with one property that identifies the pipeline stage type and the value specifying the pipeline’s effect.
       - e.g. `db.employees.aggregate([ { $group: { _id: null, total_age: { $sum: '$age' } } } ])` gets the total age of all employees in the entire collection. `db.employees.aggregate([ { $group: { _id: null, count: { $sum: 1 } } } ])` peforms the same as `count()`.
       - To group the aggregate by a field, we need to specify the name of the field (prefixed by a `$`) as the value of `_id`. e.g. `db.employees.aggregate([ { $group: { _id: '$organization', average_age: { $avg: '$age' } } } ])`.
+- MongoDB Node.js Driver
+  - Install the driver via `npm install mongodb`
+  - Make a connection to the database server
+    - Import the object `MongoClient` from the driver.
+    - Create a new client object using a URL that identifies a database to connect to. The URL should start with `mongodb://` followed by the hostname or the IP address of the server to connect to. The client constructor takes in another argument with more settings for the client.
+    - Call `connect()` method on the client object. The `connect()` method is an asynchronous method. It takes a callback funtion with two arguments: an error and the result, where the result is the client object itself.
+    - Within the callback, call `db()` on the client object to obtain a connection to the database. To get a handle to a collection, call `collection()` with the collection name on `db`.
+  - Perform CRUD operations similar to mongo shell, except that methods are all asynchronous.
+    - Besides the regular arguments, each method also takes a callback function that’s called when the operation completes.
+  - When we are done, close the connection using `close()` method of the client object.
+  - Put all of the above together in a single function so that we can handle errors.
+    - Pass a callback to this function, if there are any errors, they can be passed to the callback.
+    - For each error, we need to do the following: close the connection to the server, call the callback, return from the call so that no more operations are performed.
 
 ---
 
