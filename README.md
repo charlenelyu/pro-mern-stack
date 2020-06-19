@@ -77,6 +77,13 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - Put all of the above together in a single function so that we can handle errors.
     - Pass a callback to this function, if there are any errors, they can be passed to the callback.
     - For each error, we need to do the following: close the connection to the server, call the callback, return from the call so that no more operations are performed.
+- Schema Initialization
+  - The mongo shell is not only an interactive shell, but is also a scripting environment.
+  - In this section, we'll create a schema initialization script called `init.mongo.js` within the `script` directory.
+    - Clear existing issues it by calling a `remove()` with an empty filter (which will match all documents) on the `issues` collection.
+    - Copy the array of issues from `server.js` and use it to initialize the `issue` collection.
+    - Create a few indexes on useful field.
+    - Run the script via `mongo issuetracker scripts/init.mongo.js`
 
 ---
 
