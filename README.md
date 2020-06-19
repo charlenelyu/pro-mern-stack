@@ -84,6 +84,18 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - Copy the array of issues from `server.js` and use it to initialize the `issue` collection.
     - Create a few indexes on useful field.
     - Run the script via `mongo issuetracker scripts/init.mongo.js`
+- Reading from MongoDB: in this section, we'll change the List API to read from the MongoDB database rather than the in-memory array of issues in the server.
+  - Declare a a global variable in `server.js` to store the connection to the database.
+  - Write a function to connect to the database, which initializes this global variable.
+  - Change the setup of the server to first connect to the database and then start the Express application.
+  - Use the global variale in the resolver `issueList()` to retrieve a list of issues by calling the `find()` method on the issues collection.
+  - Since the issues from the database now contain an `_id` in addition to the `id` field, we need to include it in the GraphQL schema of the type `Issue`.
+- Writing to MongoDB: in this section, we'll change the Create API to use the MongoDB database.
+  - Create a collection with the counter that holds a value for the latest Issue ID generated.
+  - Initialize the counter’s value to the count of inserted documents.
+  - Create a function in `server.js` to call `findOneAndUpdate()`, which takes the ID of the counter and returns the next sequence.
+  - Use this function to generate a new ID field and set it in the `issue` object in the resolver `issueAdd()`.
+  - Get rid of the in-memory array of issues in the server.
 
 ---
 
