@@ -4,6 +4,10 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 # Chapter 6
 
+In this chapter, I learned the basics of MongoDB, including the main features and the commonly used methods for CRUD operations. Then I modified the server side of the Issue Tracker application, using some of these methods to read and write to the MongoDB database. Now, instead of having an array of issues in the Express server’s memory, we made the issue list persistent in a real database.
+
+![ch06](/readme-images/ch06.png)
+
 ### notes
 
 - MongoDB Basics
