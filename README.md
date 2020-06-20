@@ -43,10 +43,26 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
       - Such a proxy can be easily implemented using the `http-proxy-middleware` package.
       - After install this package in the `ui` directory, a proxy can be used as a middleware using `app.use()` mounted on the path `/graphql`.
       - The middleware can be created with just a single option: the target of the proxy, which is the base URL of the host where the requests have to be proxied.
+- ESLint: a very flexible linter that lets you define the rules that you want to follow.
+  - A *linter* checks for suspicious code that could be bugs. It can also check whether your code adheres to conventions and standards that you want to follow across your team to make the code predictably readable.
+  - ESLint looks for a set of rules in the `.eslintrc` file, which is a JSON specification.
+    - These are not the definition of rules, but a specification of which rules need to be enabled or disabled.
+    - Rules in the configuration file are specified under the property `rules`, which is an object containing one or more rules, identified by the rule name, and the value being the error level.
+    - The error levels are `off`, `warning`, and `error`.
+    - Common types of error: stylish issues, best practices, possible errors.
+  - Create the `.eslintrc` file in the `api` directory, then run `npx eslint .` to see all errors.
+  - We can add an npm script in `package.json` that will lint all the files in the `api` directory.
+  - Similarly, create the `.eslintrc` file in the `ui` directory as well as the `src` directory, then run `npx eslint . --ext js,jsx --ignore-pattern public` to see all errors.
+    - Another way of ignoring patterns of files is to add them as lines to a text file called `.eslintignore`.
+    - By default ESLint does not match files with the extension `jsx`. To include this extension, use the command line option --ext.
 
 ### trouble shooting
 
 - Page 174 Listing 7-1 `api/package.json`: the dependency of graghql should be `14.6.0` instead of `0.13.2`. Otherwise we will run into a `TypeError: Cannot read property 'filter' of undefined` when starting the api server.
+- Page 190 Listing 7-17 `api/.eslintrc`: missing quotes around `rules`; better to leave quotes around `true`.
+- Page 193 Listing 7-20 `api/server.js`: lines `errors.push('Field "title" must be at least 3 characters long.');` and `if (issue.status === 'Assigned' && !issue.owner) {` should be in function `issueValidate` instead of function `issueAdd`.
+- Page 198 Listing 7-24 `ui/src/.eslintrc`: missing quotes around `rules`.
+- Page 198 Listing 7-25 `ui/src/App.jsx`: `function IssueTable(props{ issue }) {` should be `function IssueTable({ issues }) {`.
 
 ---
 
