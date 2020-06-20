@@ -4,6 +4,11 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 # Chapter 7
 
+In this chapter, I made a big architectural change by separating the UI and the API servers. Besides that, to keep the variables flexible, I replaced all hard-coding with environment variables with the help of a package called `dotenv`, which enables the same code to run on different environments using different configurations. Finally, I used ESLint to verify that the code I wrote followed standards and good practices. This would allow us to catch possible bugs earlier in the testing cycle.
+
+![ch07-1](/readme-images/ch07-1.png)
+![ch07-2](/readme-images/ch07-2.png)
+
 ### notes
 
 - UI Server
@@ -54,7 +59,11 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - We can add an npm script in `package.json` that will lint all the files in the `api` directory.
   - Similarly, create the `.eslintrc` file in the `ui` directory as well as the `src` directory, then run `npx eslint . --ext js,jsx --ignore-pattern public` to see all errors.
     - Another way of ignoring patterns of files is to add them as lines to a text file called `.eslintignore`.
-    - By default ESLint does not match files with the extension `jsx`. To include this extension, use the command line option --ext.
+    - By default ESLint does not match files with the extension `jsx`. To include this extension, use the command line option `--ext`.
+- React PropTypes
+  - Similar to how strongly typed languages (like Java) specify the type of parameters as part of the function declaration, the properties being passed from one component to another can also be validated against a specification.
+  - This specification is supplied in the form of a static object called `propTypes` in the class, with the name of the property as the key and the validator as the value.
+  - The object `PropTypes` is available as a module called `prop-types`, which can be included in `index.html`.
 
 ### trouble shooting
 
