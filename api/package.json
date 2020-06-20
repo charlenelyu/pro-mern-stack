@@ -4,7 +4,7 @@
 	"description": "Pro MERN Stack (2nd Edition) API",
 	"main": "index.js",
 	"scripts": {
-		"start": "nodemon -e js,graphql server.js",
+		"start": "nodemon -e js,graphql -w . -w .env server.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
@@ -12,6 +12,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"apollo-server-express": "^2.3.3",
+		"dotenv": "^6.2.0",
 		"express": "^4.17.1",
 		"graphql": "^14.6.0",
 		"mongodb": "^3.5.9",

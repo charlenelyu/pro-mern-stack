@@ -16,6 +16,21 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - The UI Server: contains only the static middleware.
     - In the future, when we introduce server rendering, this server will be responsible for generating HTML pages by calling the API server’s APIs to fetch the necessary data.
     - For the moment, it only serves all static content, which consists of `index.html` and the JavaScript bundle that contains all the React code.
+- Multiple Envirionment: remove hard-coding such as the port numbers and MongoDB URL
+  - To keep the variables flexible, a typical way is via environment variables.
+  - We'll use a package called `dotenv` that help us convert variables stored in a file into environment variables. This package looks for a file called `.env`.
+  - In the `api` directory:
+    - Install `dotenv` package.
+    - `require` this package and immediately call `config()` on it.
+    - Use `process.env` properties to let environment variable replace hard-coding.
+    - Create a file called `.env`. It is recommended that this file not be checked into any repository, because each developer must specifically set the variables in the environment as per their needs.
+    - Better to change the `nodemon` command line so that it watches for changes to this file.
+  - In the `ui` directory:
+    - Make similar changes to the hard-coded UI server port.
+    - The API endpoint has to somehow get to the browser in the form of JavaScript code.
+      - Generate a `env.js` file and inject it into `index.html`. This JavaScript file will contain a global variable with the contents of the environment.
+      - Within the UI server, generate the contents of this script. It will initialize the global variable `ENV` with one or more properties that are set to environment variables.
+      - Initialize a variable for the API endpoint, then create a route in the server that responds to a GET call for `env.js`.
 
 ### trouble shooting
 
