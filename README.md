@@ -31,6 +31,18 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
       - Generate a `env.js` file and inject it into `index.html`. This JavaScript file will contain a global variable with the contents of the environment.
       - Within the UI server, generate the contents of this script. It will initialize the global variable `ENV` with one or more properties that are set to environment variables.
       - Initialize a variable for the API endpoint, then create a route in the server that responds to a GET call for `env.js`.
+- Proxy-Based Architecture
+  - Cross-origin Resource Sharing (CORS)
+    - The Same-origin policy exists to prevent malicious websites from gaining unauthorized access to the application.
+    - The kind of requests that can be permitted is controlled by the Same-origin policy as well as parameters controlled by the server, which determines if the request can be allowed.
+  - The Apollo GraphQL server, by default, allows unauthenticated requests across origins, so we have to disable the default behavior using an environment variable.
+    - Add an environment variable `ENABLE_CORS` in `api/.env` and set it to `false`.
+    - In `server.js`, look for this environment variable and set an option called `cors` to `true` or `false`, depending on this variable.
+    - Now, we need some other mechanism to make API calls.
+      - We’ll change the UI to make even API requests to the UI server, where we will install a proxy so that any request to `/graphql` is routed to the API server.
+      - Such a proxy can be easily implemented using the `http-proxy-middleware` package.
+      - After install this package in the `ui` directory, a proxy can be used as a middleware using `app.use()` mounted on the path `/graphql`.
+      - The middleware can be created with just a single option: the target of the proxy, which is the base URL of the host where the requests have to be proxied.
 
 ### trouble shooting
 
