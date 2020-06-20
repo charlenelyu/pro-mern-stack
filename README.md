@@ -4,6 +4,23 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 # Chapter 7
 
+### notes
+
+- UI Server
+  - Now, the one and only Express server not only serves static content, but also serves API calls. It's better to separate the two functions into two servers - the UI server and the API server.
+  - Two servers can be physically different computers, but for development purposes, we’ll run them on the same computer but on different ports.
+  - Two servers will use two different Node.js processes, each with its own instance of Express.
+  - The API Server: responsible for handling only the API requests.
+    - It responds only to URLs matching `/graphql` in the path.
+    - Thus, the Apollo server middleware and its requests to the MongoDB database will be the only middleware in this server.
+  - The UI Server: contains only the static middleware.
+    - In the future, when we introduce server rendering, this server will be responsible for generating HTML pages by calling the API server’s APIs to fetch the necessary data.
+    - For the moment, it only serves all static content, which consists of `index.html` and the JavaScript bundle that contains all the React code.
+
+### trouble shooting
+
+- Page 174 Listing 7-1 `api/package.json`: the dependency of graghql should be `14.6.0` instead of `0.13.2`. Otherwise we will run into a `TypeError: Cannot read property 'filter' of undefined` when starting the api server.
+
 ---
 
 # Chapter 6

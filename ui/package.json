@@ -1,0 +1,24 @@
+{
+	"name": "pro-mern-stack-2-ui",
+	"version": "1.0.0",
+	"description": "Pro MERN Stack (2nd Edition) UI",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon -w uiserver.js uiserver.js",
+		"compile": "babel src --out-dir public",
+		"watch": "babel src --out-dir public --watch --verbose"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.17.1",
+		"nodemon": "^1.19.4"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.8.4",
+		"@babel/core": "^7.9.6",
+		"@babel/preset-env": "^7.9.6",
+		"@babel/preset-react": "^7.9.4"
+	}
+}
