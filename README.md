@@ -4,12 +4,19 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 # Table of Contents
 
-- [Chapter 7] (#chapter-7)
-- [Chapter 6] (#chapter-6)
-- [Chapter 5] (#chapter-5)
-- [Chapter 4] (#chapter-4)
-- [Chapter 3] (#chapter-3)
-- [Chapter 2] (#chapter-2)
+- [Chapter 8](#chapter-8)
+- [Chapter 7](#chapter-7)
+- [Chapter 6](#chapter-6)
+- [Chapter 5](#chapter-5)
+- [Chapter 4](#chapter-4)
+- [Chapter 3](#chapter-3)
+- [Chapter 2](#chapter-2)
+
+# Chapter 8
+
+### notes
+
+---
 
 # Chapter 7
 
