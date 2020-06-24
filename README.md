@@ -2,6 +2,15 @@
 
 This is my repository for the project described in the book Pro MERN Stack (2nd Ed) by Vasan Subramanian.
 
+# Table of Contents
+
+- [Chapter 7] (#chapter-7)
+- [Chapter 6] (#chapter-6)
+- [Chapter 5] (#chapter-5)
+- [Chapter 4] (#chapter-4)
+- [Chapter 3] (#chapter-3)
+- [Chapter 2] (#chapter-2)
+
 # Chapter 7
 
 In this chapter, I made a big architectural change by separating the UI and the API servers. Besides that, to keep the variables flexible, I replaced all hard-coding with environment variables with the help of a package called `dotenv`, which enables the same code to run on different environments using different configurations. Finally, I used ESLint to verify that the code I wrote followed standards and good practices. This would allow us to catch possible bugs earlier in the testing cycle.
@@ -10,6 +19,9 @@ In this chapter, I made a big architectural change by separating the UI and the 
 ![ch07-2](/readme-images/ch07-2.png)
 
 ### notes
+
+<details>
+<summary>click for details</summary>
 
 - UI Server
   - Now, the one and only Express server not only serves static content, but also serves API calls. It's better to separate the two functions into two servers - the UI server and the API server.
@@ -65,6 +77,8 @@ In this chapter, I made a big architectural change by separating the UI and the 
   - This specification is supplied in the form of a static object called `propTypes` in the class, with the name of the property as the key and the validator as the value.
   - The object `PropTypes` is available as a module called `prop-types`, which can be included in `index.html`.
 
+</details>
+
 ### trouble shooting
 
 - Page 174 Listing 7-1 `api/package.json`: the dependency of graghql should be `14.6.0` instead of `0.13.2`. Otherwise we will run into a `TypeError: Cannot read property 'filter' of undefined` when starting the api server.
@@ -82,6 +96,9 @@ In this chapter, I learned the basics of MongoDB, including the main features an
 ![ch06](/readme-images/ch06.png)
 
 ### notes
+
+<details>
+<summary>click for details</summary>
 
 - MongoDB Basics
   - Documents: MongoDB is a document database, which means that the equivalent of a record is a document, or an object. In a relational database, we organize data in terms of rows and columns, whereas in a document database, an entire object is written as a document.
@@ -173,6 +190,8 @@ In this chapter, I learned the basics of MongoDB, including the main features an
   - Create a function in `server.js` to call `findOneAndUpdate()`, which takes the ID of the counter and returns the next sequence.
   - Use this function to generate a new ID field and set it in the `issue` object in the resolver `issueAdd()`.
   - Get rid of the in-memory array of issues in the server.
+
+</details>
 
 ---
 
