@@ -4,17 +4,31 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 # Table of Contents
 
-- [Chapter 8](#chapter-8)
-- [Chapter 7](#chapter-7)
-- [Chapter 6](#chapter-6)
-- [Chapter 5](#chapter-5)
-- [Chapter 4](#chapter-4)
-- [Chapter 3](#chapter-3)
-- [Chapter 2](#chapter-2)
+- [Chapter 8: Modularization and Webpack](#chapter-8)
+- [Chapter 7: Architecture and ESLint](#chapter-7)
+- [Chapter 6: MongoDB](#chapter-6)
+- [Chapter 5: Express and GraphQL](#chapter-5)
+- [Chapter 4: React State](#chapter-4)
+- [Chapter 3: React Components](#chapter-3)
+- [Chapter 2: Hello World](#chapter-2)
 
 # Chapter 8
 
 ### notes
+
+- Back-End Modules
+  - In Node.js, there are two key elements to interact with the module system: `require` and `exports`.
+  - The `require` element is a function that can be used to import symbols from another module. It takes in an ID as the argument, where the ID is the name of the module.
+    - For packages installed using `npm`, this is the same as the name of the package.
+    - For modules within the same application, the ID is the path of the file that needs to be imported.
+  - The `exports` element defines the symbols that a file or module export. These symbols are set in a global variable called `module.exports` within that file, and that is the one that will be returned by the function call to `require()`.
+  - Separate contents in `server.js`
+    - Move function `GraphQLDate()` to `graphql_date.js`.
+    - Move functions relating to the about message to `about.js`
+    - Move all database-related code to `db.js`.
+    - Move functions related to the Issue object to `issue.js`. This file need the DB connection from `db.js`.
+    - Move contents dealing with Apollo Server, the schema, and the resolvers to `api_handler.js`. For the actual resolver implementations, we’ll import them from three files — `graphql_date.js`, `about.js`, and `issue.js`.
+    - what’s left in `server.js` is only the instantiation of the application, applying the Apollo Server middleware and then starting the server.
 
 ---
 
