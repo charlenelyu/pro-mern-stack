@@ -18,6 +18,10 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ## Chapter 8
 
+In this chapter, I modularized the code by splitting the main file into multiple reusable pieces in both back-end and front-end. For the front-end code, I used Webpack to resolve dependencies, not only for the application’s own dependent modules, but also for third-party libraries, by “packing” these files into a few bundles. Apart from that, I learned how Webpack’s HMR increased productivity by injecting code into the browser incrementally, and refreshing the browser automatically on front-end code changes. Finally, I added support for debugging using source maps.
+
+![ch08](/readme-images/ch08.png)
+
 ### notes
 
 - Back-End Modules
@@ -69,6 +73,19 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - In `uiserver.js`: (1) add an option for the Express server to enable HMR using an environment variable called `ENABLE_HMR`; (2) import Webpack, two modules and the configuration file; (3) push a new entry point for Webpack; (4) enable the plugin for HMR; (5)  create a Webpack compiler and create the `dev` middleware and the `hot` middleware.
   - Now, there are different ways to start the UI server. Add these as comments in `package.json` (use properties prefixed with `#`).
   - In `App.jsx`, accept all changes using the `HotModuleReplacementPlugin`’s `accept()` method.
+- Debugging
+  - Compiling files and creating bundles make debugging hard. Webpack solves this problem by its ability to give us source maps.
+  - In the Webpack configuration, enable the source map with a parameter called `devtool`.
+  - Now, when look at the browser’s Developer Console, we are able to see the original source code and be able to place breakpoints in it.
+  - We can install the React Development Tools add-on, which provides the ability to see the React components in a hierarchical manner like the DOM inspector.
+- Production Optimization
+  - There are two things that need special attention for Webpack.
+  - The first thing to be concerned about is the bundle size.
+    - For applications that are frequently used by users such as the Issue Tracker application, the bundle size is not of much concern because it will be cached by the user’s browser.
+    - But for applications where there are many infrequent users, it’s important to not just split the bundles into smaller pieces, but also to load the bundles only when required using a strategy called *lazy loading*.
+  - The other thing to be concerned about is browser caching, especially when you don’t want it to cache the JavaScript bundle. This happens when the application code has changed and the version in the user’s browser’s cache is the wrong one.
+    - Most modern browsers handle this quite well, by checking with the server if the bundle has changed.
+    - But older browsers, especially Internet Explorer, aggressively cache script files. The only way around this is to change the name of the script file if the contents have changed.
 
 ## Chapter 7
 

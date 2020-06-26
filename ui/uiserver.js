@@ -18,7 +18,7 @@ if (enableHMR && (process.env.NODE_ENV !== 'production')) {
   config.entry.app.push('webpack-hot-middleware/client');
   config.plugins = config.plugins || [];
   config.plugins.push(new webpack.HotModuleReplacementPlugin());
-  
+
   const compiler = webpack(config);
   app.use(devMiddleware(compiler));
   app.use(hotMiddleware(compiler));
