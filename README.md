@@ -55,6 +55,12 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - Like the `--watch` option for Babel, Webpack too comes with a `--watch` option, which incrementally builds the bundle, transforming only the changed files.
   - Change the npm scripts for `compile` and `watch` to use the Webpack command instead of the Babel command.
   - Now, we are ready to split the `App.jsx` file and place each React component in its own file. It's recommended to do so especially for stateful components. Stateless components can be combined with other components.
+- Libraries Bundle
+  - In this section, we’ll use Webpack to create a bundle that includes all third-party libraries rather than rely on CDN services.
+  - Intall all client-side libraries, which is the same list as the list of `<script>`s in `index.html`.
+  - Import these libraries in all the client-side files where they are needed.
+  - Now the size of `app.bundle.js` will increase from a few KBs to more than 1MB, because it includes all of the libraries. A better alternative is to have two bundles, one for the application code (`app.bundle.js`) and another for all the libraries (`vendor.bundle.js`). We can easily do this in Webpack using an optimization called `splitChunks`.
+  - In `index.html`, remove the loading of libraries from the CDN, and include the new script `vendor.bundle.js`.
 
 ## Chapter 7
 
