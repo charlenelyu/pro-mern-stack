@@ -2,7 +2,7 @@
 
 This is my repository for the project described in the book Pro MERN Stack (2nd Ed) by Vasan Subramanian.
 
-# Table of Contents
+## Table of Contents
 
 - [Chapter 8: Modularization and Webpack](#chapter-8)
 - [Chapter 7: Architecture and ESLint](#chapter-7)
@@ -12,7 +12,11 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 - [Chapter 3: React Components](#chapter-3)
 - [Chapter 2: Hello World](#chapter-2)
 
-# Chapter 8
+---
+
+# Chapter Notes
+
+## Chapter 8
 
 ### notes
 
@@ -29,10 +33,18 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - Move functions related to the Issue object to `issue.js`. This file need the DB connection from `db.js`.
     - Move contents dealing with Apollo Server, the schema, and the resolvers to `api_handler.js`. For the actual resolver implementations, we’ll import them from three files — `graphql_date.js`, `about.js`, and `issue.js`.
     - what’s left in `server.js` is only the instantiation of the application, applying the Apollo Server middleware and then starting the server.
+- Front-End Modules and Webpack
+  - Traditionally, the approach to spliting client-side JavaScript code was to use multiple files and include them using `<script>` tags in the main HTML file. This can be hard to manage because the dependency is done by maintaining a certain order of files in the HTML file.
+  - With tools such as Webpack and Browserify, dependencies can be defined using statements equivalent to `require()` that we used in Node.js. These tools automatically determines the dependencies of application’s modules as well as third-party libraries, and put these files together into one or just a few bundles of pure JavaScript that can be included in the HTML file.
+    - Install Webpack using the option `--save-dev` because the UI server in production has no need for Webpack.
+    - Split `App.jsx` into two by taking out the function `graphQLFetch`.
+      - Note that for the front-end code, we'll use the newer ES2015-style `import` keyword rather than `require`.
+      - Change `.eslintrc` to make an exception that always include extensions in import statements except for packages installed via `npm`.
+    - Run `npm run watch` or `npm run compile` to compile all source code with Babel.
+    - Pack the `App.js` file and create a bundle called `app.bundle.js` with command `npx webpack public/App.js --output public/app.bundle.js --mode development`. (Note that Webpack cannot handle JSX natively)
+    - Replace `App.js` in `index.html` with `app.bundle.js` because the new bundle is the one that contains all the required code.
 
----
-
-# Chapter 7
+## Chapter 7
 
 In this chapter, I made a big architectural change by separating the UI and the API servers. Besides that, to keep the variables flexible, I replaced all hard-coding with environment variables with the help of a package called `dotenv`, which enables the same code to run on different environments using different configurations. Finally, I used ESLint to verify that the code I wrote followed standards and good practices. This would allow us to catch possible bugs earlier in the testing cycle.
 
@@ -108,9 +120,7 @@ In this chapter, I made a big architectural change by separating the UI and the 
 - Page 198 Listing 7-24 `ui/src/.eslintrc`: missing quotes around `rules`.
 - Page 198 Listing 7-25 `ui/src/App.jsx`: `function IssueTable(props{ issue }) {` should be `function IssueTable({ issues }) {`.
 
----
-
-# Chapter 6
+## Chapter 6
 
 In this chapter, I learned the basics of MongoDB, including the main features and the commonly used methods for CRUD operations. Then I modified the server side of the Issue Tracker application, using some of these methods to read and write to the MongoDB database. Now, instead of having an array of issues in the Express server’s memory, we made the issue list persistent in a real database.
 
@@ -214,9 +224,7 @@ In this chapter, I learned the basics of MongoDB, including the main features an
 
 </details>
 
----
-
-# Chapter 5
+## Chapter 5
 
 In this chapter, I spent most of my time integrating with the back-end. The biggest change is that I started fetching and storing the data using APIs from the Express and Node.js server, which replaced the hard-coded array of issues in the browser’s memory. Using GraphQL, I learned how to build the C and R part of CRUD. I also saw how easy some of the validations were to implement and how the strong type system of GraphQL helps avoid errors and makes the APIs self-documenting.
 
@@ -317,8 +325,6 @@ In this chapter, I spent most of my time integrating with the back-end. The bigg
 - On **page 92**, the command for installing npm packages should be `npm install graphql@0 apollo-server-express@2.3`, which sets the dependencies for `apollo-server-express` to version 2.3+. Otherwise, there will be a `cannot find module` error when trying to start the server.
 - On page 125 Listing 5-17: the function shown as `function validateIssue(_, { issue })` should be `function issueValidate(issue)`.
 
----
-
 ## Chapter 4
 
 In this chapter, I learned how to use React state and how it can be manipulated on user interactions or other events. I added two text input fields and a button for the Issue Tracker to let users append rows to the initial list of issues. A click of the button will cause the state to change and the components to rerender. One important point during this process is that we use *props* to pass the state and the method around between a child and its parent.
@@ -369,8 +375,6 @@ In this chapter, I learned how to use React state and how it can be manipulated 
 
 </details>
 
----
-
 ## Chapter 3
 
 In this chapter, I started to use React classes to instantiate components. I laid out the main page of the Issue Tracker  by generating components dynamically from data and composing them together. I also learned how to pass data from a parent component to its children, which allows us to reuse a component class and to make it to render differently with different data.
@@ -409,8 +413,6 @@ In this chapter, I started to use React classes to instantiate components. I lai
     - add few more columns
 
 </details>
-
----
 
 ## Chapter 2
 
