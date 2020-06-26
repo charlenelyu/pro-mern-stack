@@ -36,13 +36,25 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 - Front-End Modules and Webpack
   - Traditionally, the approach to spliting client-side JavaScript code was to use multiple files and include them using `<script>` tags in the main HTML file. This can be hard to manage because the dependency is done by maintaining a certain order of files in the HTML file.
   - With tools such as Webpack and Browserify, dependencies can be defined using statements equivalent to `require()` that we used in Node.js. These tools automatically determines the dependencies of application’s modules as well as third-party libraries, and put these files together into one or just a few bundles of pure JavaScript that can be included in the HTML file.
-    - Install Webpack using the option `--save-dev` because the UI server in production has no need for Webpack.
+    - Install Webpack via `npm install --save-dev webpack@4 webpack-cli@3`. We use the option `--save-dev` because the UI server in production has no need for Webpack.
     - Split `App.jsx` into two by taking out the function `graphQLFetch`.
       - Note that for the front-end code, we'll use the newer ES2015-style `import` keyword rather than `require`.
       - Change `.eslintrc` to make an exception that always include extensions in import statements except for packages installed via `npm`.
     - Run `npm run watch` or `npm run compile` to compile all source code with Babel.
     - Pack the `App.js` file and create a bundle called `app.bundle.js` with command `npx webpack public/App.js --output public/app.bundle.js --mode development`. (Note that Webpack cannot handle JSX natively)
     - Replace `App.js` in `index.html` with `app.bundle.js` because the new bundle is the one that contains all the required code.
+- Transform and Bundle
+  - In the previous section, we had to manually Babel transform the files first, and then put them together in a bundle using Webpack. Webpack is capable of combining these two steps with the help of *loaders*.
+  - Install loaders via `npm install --save-dev babel-loader@8`.
+  - Create a configuration file for Webpack called `webpack.config.js`, which includes a `module.exports` variable that exports the properties that specify the transformation and bundling process.
+    - Set `mode` property to `development` as we did in the command line previously.
+    - The `entry` property specifies the file from which all dependencies can be determined. In the Issue Tracker application, this file is `App.jsx`.
+    - The `output` property needs to be an object with the `filename` and `path` as two properties. The path has to be an absolute path. The recommended way to supply an absolute path is using the path module and the `path.resolve` function.
+    - Loaders are specified under the property `module`, which contains a series of rules as an array. Each rule at the minimum has a `test`, which is a regex to match files and a `use`, which specifies the loader to use on finding a match.
+  - Now we simply run `npx webpack` without any parameters and see that `app.bundle.js` is created without creating any intermediate files. (To ensure this is hapenning, delete `App.js` and `graphQLFetch.js` in the `public` directory first.)
+  - Like the `--watch` option for Babel, Webpack too comes with a `--watch` option, which incrementally builds the bundle, transforming only the changed files.
+  - Change the npm scripts for `compile` and `watch` to use the Webpack command instead of the Babel command.
+  - Now, we are ready to split the `App.jsx` file and place each React component in its own file. It's recommended to do so especially for stateful components. Stateless components can be combined with other components.
 
 ## Chapter 7
 
