@@ -51,16 +51,24 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - The `entry` property specifies the file from which all dependencies can be determined. In the Issue Tracker application, this file is `App.jsx`.
     - The `output` property needs to be an object with the `filename` and `path` as two properties. The path has to be an absolute path. The recommended way to supply an absolute path is using the path module and the `path.resolve` function.
     - Loaders are specified under the property `module`, which contains a series of rules as an array. Each rule at the minimum has a `test`, which is a regex to match files and a `use`, which specifies the loader to use on finding a match.
-  - Now we simply run `npx webpack` without any parameters and see that `app.bundle.js` is created without creating any intermediate files. (To ensure this is hapenning, delete `App.js` and `graphQLFetch.js` in the `public` directory first.)
+  - Now simply run `npx webpack` without any parameters and see that `app.bundle.js` is created without creating any intermediate files. (To ensure this is hapenning, delete `App.js` and `graphQLFetch.js` in the `public` directory first.)
   - Like the `--watch` option for Babel, Webpack too comes with a `--watch` option, which incrementally builds the bundle, transforming only the changed files.
   - Change the npm scripts for `compile` and `watch` to use the Webpack command instead of the Babel command.
   - Now, we are ready to split the `App.jsx` file and place each React component in its own file. It's recommended to do so especially for stateful components. Stateless components can be combined with other components.
 - Libraries Bundle
   - In this section, we’ll use Webpack to create a bundle that includes all third-party libraries rather than rely on CDN services.
-  - Intall all client-side libraries, which is the same list as the list of `<script>`s in `index.html`.
+  - Install all client-side libraries, which is the same list as the list of `<script>`s in `index.html`.
   - Import these libraries in all the client-side files where they are needed.
-  - Now the size of `app.bundle.js` will increase from a few KBs to more than 1MB, because it includes all of the libraries. A better alternative is to have two bundles, one for the application code (`app.bundle.js`) and another for all the libraries (`vendor.bundle.js`). We can easily do this in Webpack using an optimization called `splitChunks`.
-  - In `index.html`, remove the loading of libraries from the CDN, and include the new script `vendor.bundle.js`.
+  - Now after compilation, the size of `app.bundle.js` will increase from a few KBs to more than 1MB, because it includes all of the libraries. A better alternative is to have two bundles, one for the application code (`app.bundle.js`) and another for all the libraries (`vendor.bundle.js`). We can easily do this in Webpack using an optimization called `splitChunks`.
+  - In `index.html`, remove libraries loaded directly from the CDN, and include the new script `vendor.bundle.js`.
+- Hot Module Replacement
+  - Webpack has a powerful feature called Hot Module Replacement (HMR) that can reduce inconvenience caused by `npm run watch`. It changes modules in the browser while the application is running, removing the need for a refresh altogether.
+  - Install `webpack-dev-middleware` and `webpack-hot-middleware`.
+  - Import these modules and mount them in the Express server as middleware, but only when explicitly enabled because we don’t want to do this in production.
+    - To let us modify the configuration on the fly when HMR is enabled, we need to change the `entry` in `webpack.config.js` to an array so that a new entry point can be pushed easily.
+    - In `uiserver.js`: (1) add an option for the Express server to enable HMR using an environment variable called `ENABLE_HMR`; (2) import Webpack, two modules and the configuration file; (3) push a new entry point for Webpack; (4) enable the plugin for HMR; (5)  create a Webpack compiler and create the `dev` middleware and the `hot` middleware.
+  - Now, there are different ways to start the UI server. Add these as comments in `package.json` (use properties prefixed with `#`).
+  - In `App.jsx`, accept all changes using the `HotModuleReplacementPlugin`’s `accept()` method.
 
 ## Chapter 7
 
