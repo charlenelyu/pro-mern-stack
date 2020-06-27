@@ -52,6 +52,18 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - In `IssueFilter.jsx`, replace the placeholder for the filter with three hyperlinks: All Issues, New Issues, and Assigned Issues.
     - The query string needs to be handled by the `IssueList` component as part of the `loadData()` function.
     - In the `IssueList` component, implement a lifecycle method `componentDidUpdate()` to reload the data when there's a change in the query string.
+- Links
+  - Until now, we used `hrefs` to create hyperlinks. React Router provides a better and more convenient way to create links via the `Link` component.
+    - The paths in a `Link` are always absolute.
+    - The query string and the hash can be supplied as separate properties to the `Link`.
+    - `NavLink` is a variation of `Link` that can figure out if the current URL matches the link and adds a class to the link to show it as active.
+    - A `Link` works the same between different kinds of routers.
+  - In this section, we'll change all `hrefs` to `Links` in order to take advantage of these properties.
+    - The `Link` component takes one property, `to`, which can be a string (for simple targets) or an object (for targets with query strings, etc.).
+    - In the `IssueRow` component of `IssueTable.jsx`, the target is a simple string. Change the hyperlink element from `<a>` to `<Link>` and the property `href` to `to`, while maintaining the same string as the target.
+    - In `IssueFilter.jsx`, the target is an object containing the pathname as `/issues`, and the query string as `?status=New`.
+    - As for the navigation bar in `Page.jsx`, we'll use a `NavLink`, which allows us to highlight the currently active navigation link.
+    - `NavLink` only adds a class called `active` when the link matches the URL. In order to change the look of active links, we need to define a style for the class in `index.html`.
 
 ## Chapter 8
 
