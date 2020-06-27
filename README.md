@@ -4,6 +4,7 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ## Table of Contents
 
+- [Chapter 9: React Router](#chapter-9)
 - [Chapter 8: Modularization and Webpack](#chapter-8)
 - [Chapter 7: Architecture and ESLint](#chapter-7)
 - [Chapter 6: MongoDB](#chapter-6)
@@ -16,13 +17,20 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 # Chapter Notes
 
+## Chapter 9
+
+### notes
+
 ## Chapter 8
 
-In this chapter, I modularized the code by splitting the main file into multiple reusable pieces in both back-end and front-end. For the front-end code, I used Webpack to resolve dependencies, not only for the application’s own dependent modules, but also for third-party libraries, by “packing” these files into a few bundles. Apart from that, I learned how Webpack’s HMR increased productivity by injecting code into the browser incrementally, and refreshing the browser automatically on front-end code changes. Finally, I added support for debugging using source maps.
+In this chapter, I modularized the code by splitting the main file into multiple reusable pieces in both back-end and front-end. For the front-end code, I used Webpack to resolve dependencies, not only for the application’s own dependent modules, but also for third-party libraries, by "packing" these files into a few bundles. Apart from that, I learned how Webpack’s HMR increased productivity by injecting code into the browser incrementally, and refreshing the browser automatically on front-end code changes. Finally, I added support for debugging using source maps.
 
 ![ch08](/readme-images/ch08.png)
 
 ### notes
+
+<details>
+<summary>click for details</summary>
 
 - Back-End Modules
   - In Node.js, there are two key elements to interact with the module system: `require` and `exports`.
@@ -86,6 +94,8 @@ In this chapter, I modularized the code by splitting the main file into multiple
   - The other thing to be concerned about is browser caching, especially when you don’t want it to cache the JavaScript bundle. This happens when the application code has changed and the version in the user’s browser’s cache is the wrong one.
     - Most modern browsers handle this quite well, by checking with the server if the bundle has changed.
     - But older browsers, especially Internet Explorer, aggressively cache script files. The only way around this is to change the name of the script file if the contents have changed.
+
+</details>
 
 ## Chapter 7
 
