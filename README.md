@@ -44,6 +44,14 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - In `Contents.jsx`, add a `Route` component that matches the path `/edit/:id`.
     - In `IssueEdit.jsx`, create the placeholder `Edit` component. We can access the trailing portion of the URL’s path containing the `id` via `match.params.id`.
     - In `IssueTable.jsx`, create a hyperlink in every row that navigates to the edit page.
+- Query Parameters
+  - The other way of supplying parameters to the component is using the URL’s query string. It's useful for cases where the variables are many and not necessarily in some order.
+  - In this section, we'll use this facility implement a simple filter based on the status field.
+    - In `schema.graphql`, add a parameter called `status` to the `issueList` query, of type `StatusType`.
+    - In `issue.js`, accept this new argument in the function `list()`. Since the argument is optional, we’ll conditionally add a filter on status and pass it to the collection’s `find()` method.
+    - In `IssueFilter.jsx`, replace the placeholder for the filter with three hyperlinks: All Issues, New Issues, and Assigned Issues.
+    - The query string needs to be handled by the `IssueList` component as part of the `loadData()` function.
+    - In the `IssueList` component, implement a lifecycle method `componentDidUpdate()` to reload the data when there's a change in the query string.
 
 ## Chapter 8
 
