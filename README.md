@@ -70,6 +70,20 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - First, create this simple dropdown and replace the links with it.
     - Next, trap the event when the dropdown value is changed using the `onChange` property and set this property to a method called `onChangeStatus()`.
     - Implement `onChangeStatus()` to push the new location based on the changed filter.
+- Nested Routes
+  - For nested routes, the beginning part of the path depicts one section of a page, and based on interaction within that page, the latter part of the path depicts variation, or further definition of what’s shown additionally in the page.
+  - In this section, we'll add a description field to an issue. On selecting an issue, the lower half of the page will show the description of that issue. We'll have `/issues` showing a list of issues with no detail, and `/issues/1` showing the the description of issue with ID 1, in addition to the issue list.
+    - In `schema.graphql`, add a `description` field both in the type `Issue` and the type `IssueInputs`. We also need to add a new API called `issue` that takes in an integer as an argument to specify the ID of the issue to fetch.
+    - In `issue.js`, implement the API to get a single issue. Create a new function `get()` that takes the `id` argument and call `findOne()` on the `issues` collection. Export it along with the other exported functions.
+    - In `api_handler.js`, tie up the new function in the resolvers we supply to the Apollo Server.
+    - Modify the schema initializer script (`init.mongo.js`) to add a description field to the initial set of issues.
+    - Create a new file `IssueDetail.jsx` and implement the `IssueDetail` component.
+    - In `IssueList.jsx`, add a `Route` with the actual component being `IssueDetail` after the `IssueAdd` section, whose path is of the form `/issues/<id>`. Instead of hardcoding `/issues`, use `this.props.match.path`, which is the path as matched in the parent component.
+    - In `IssueTable.jsx`, create another link beside the Edit link to select an issue.
+
+### troubleshooting
+
+- Page 256 Listing 9-21: in the `loadData()` function, line `const data = await graphQLFetch(query, { id });` should be `const data = await graphQLFetch(query, { id: parseInt(id, 10) });`. Otherwise, there will be a `INTERNAL_SERVER_ERROR` when displaying the detail of an issue, becuase an integer is expected but a numerical string is received.
 
 ## Chapter 8
 
