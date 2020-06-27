@@ -19,6 +19,10 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ## Chapter 9
 
+In this chapter, I learned how to use React Router to implement client-side routing. I added a report page to the Issue Tracker application, and created a navigation bar so that the user can navigate between different views. I also learned how to connect the URL in the browser with what is shown in the page, and how parameters and query strings can be used to tweak the page contents. Using these facilities, I implemented a filter to display certain issues based on the status field, and added features that let users to edit an issue or explore the detail of an issue.
+
+![ch09](/readme-images/ch09.png)
+
 ### notes
 
 - Simple Routing
