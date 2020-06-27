@@ -80,6 +80,13 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - Create a new file `IssueDetail.jsx` and implement the `IssueDetail` component.
     - In `IssueList.jsx`, add a `Route` with the actual component being `IssueDetail` after the `IssueAdd` section, whose path is of the form `/issues/<id>`. Instead of hardcoding `/issues`, use `this.props.match.path`, which is the path as matched in the parent component.
     - In `IssueTable.jsx`, create another link beside the Edit link to select an issue.
+- Browser History Router
+  - Hash-based routing is easy to understand and implement, but the downside of it is when the server needs to respond differently to different URL paths (like support responses to search engine crawlers).
+  - To make our application search engine friendly, we’ll switch over to the browser history based router.
+    - It can be simply done by changing the import statement and using `BrowserRouter` instead of `HashRouter`. After that, if we navigate to <localhost:8000>, the URL will be without a `#`, like <http://localhost:8000/issues>.
+    - However, a refresh on any of the views will fail. That’s because the URL is currently pointing to `/issues` and the browser makes a request to the server for `/issues`, which is not handled by the UI server.
+    - To address this, make a change to the UI server, which returns `index.html` for any URL that is not handled otherwise.
+    - There is still one change left: change `webpack.config.js` to set the `publicPath` configuration.
 
 ### troubleshooting
 
