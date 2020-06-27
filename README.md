@@ -37,6 +37,13 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
       - As for the navigation bar, we are going to use the `HashRouter`. For example, to match the `/issues` path, the URL will be `/#/issues`, where the first `/` is the one and only page of the SPA, `#` is the delimiter for the anchor, and `/issues` is the path of the route.
     - In `App.jsx`, render the `Page` component instead of the original `IssueList` component into the DOM. Further, the page itself needs to be wrapped around a router, as all routing functionality must be within this for routing to work.
     - Now, if we navigate to <localhost:8000>, the URL of the browser changes automatically to <http://localhost:8000/#/issues>. This is because of the `Redirect` route.
+- Route Parameters
+  - One way of supplying parameters to the component is to add variables as route parameters.
+  - Specifying parameters in the route path is similar to that in Express, using the `:` character followed by the name of the property that will receive the value.
+  - In this section, we'll use this facility to show a page that lets us edit an issue. For now, we’ll create a placeholder in a new file `IssueEdit.jsx`. Later, we’ll make an Ajax call and fetch the details of the issue and show them as a form for the user to make changes and save.
+    - In `Contents.jsx`, add a `Route` component that matches the path `/edit/:id`.
+    - In `IssueEdit.jsx`, create the placeholder `Edit` component. We can access the trailing portion of the URL’s path containing the `id` via `match.params.id`.
+    - In `IssueTable.jsx`, create a hyperlink in every row that navigates to the edit page.
 
 ## Chapter 8
 
