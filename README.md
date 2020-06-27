@@ -64,6 +64,12 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - In `IssueFilter.jsx`, the target is an object containing the pathname as `/issues`, and the query string as `?status=New`.
     - As for the navigation bar in `Page.jsx`, we'll use a `NavLink`, which allows us to highlight the currently active navigation link.
     - `NavLink` only adds a class called `active` when the link matches the URL. In order to change the look of active links, we need to define a style for the class in `index.html`.
+- Programmatic Navigation
+  - Query strings are also typically used for HTML forms. A form requires the query string to be constructed dynamically, as opposed to a predetermined string that we used in the `Link`s.
+  - In this section, we’ll add a simple dropdown and set the query string based on the value of the dropdown. All changes will be made in `IssueFilter.jsx`: when the dropdown value changes, it changes the URL’s query string, which in turn applies the filter.
+    - First, create this simple dropdown and replace the links with it.
+    - Next, trap the event when the dropdown value is changed using the `onChange` property and set this property to a method called `onChangeStatus()`.
+    - Implement `onChangeStatus()` to push the new location based on the changed filter.
 
 ## Chapter 8
 
