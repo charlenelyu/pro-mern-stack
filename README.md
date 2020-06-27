@@ -21,6 +21,23 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ### notes
 
+- Simple Routing
+  - To navigate between different views of the application, routing is needed. Routing links the state of the page to the URL in the browser.
+  - In order to affect routing, any page needs to be connected to something that the browser recognizes. In general, for SPAs, there are two ways to make this connection: hash-based and browser history.
+  - In this section, we’ll create two views, one for the issue list and another for a report section. We'll split the main page into two sections: a header section containing a navigation bar with hyperlinks to different views, and a contents section which will switch between the two views depending on the hyperlink selected. The navigation bar will remain regardless of the view that is shown. We’ll also ensure that the home page redirects to the issue list.
+    - Install React Router (`react-router-dom`).
+    - Create a placeholder component for the report view in a new file `IssueReport.jsx`.
+    - Create a component for the contents in a new file `Contents.jsx`. This component will be responsible for switching between views.
+      - React Router provides a component called `Route` to achieve routing between different components based on the hyperlink that is clicked. It takes in a property `path` specifying the route needs to match, and a property `component` specifying what needs to be shown when the path matches the URL in the browser.
+      - To redirect the home page to the issue list, we can further add a `Redirect` component.
+      - Add a message that is shown when none of the routes match. When the property `path` is not specified, it implies that it matches any path.
+      - All routes need to be enclosed in a wrapper component, which can be just a `<div>`. But to indicate that only one of these components needs to be shown, they should be enclosed in a `<Switch>` component.
+      - Note that the match is a prefix match, and only the first match’s component will be rendered. Therefore, the order of routes is also important.
+    - Create a component for the page that shows the navigation bar and the contents component in a new file `Page.jsx`.
+      - As for the navigation bar, we are going to use the `HashRouter`. For example, to match the `/issues` path, the URL will be `/#/issues`, where the first `/` is the one and only page of the SPA, `#` is the delimiter for the anchor, and `/issues` is the path of the route.
+    - In `App.jsx`, render the `Page` component instead of the original `IssueList` component into the DOM. Further, the page itself needs to be wrapped around a router, as all routing functionality must be within this for routing to work.
+    - Now, if we navigate to <localhost:8000>, the URL of the browser changes automatically to <http://localhost:8000/#/issues>. This is because of the `Redirect` route.
+
 ## Chapter 8
 
 In this chapter, I modularized the code by splitting the main file into multiple reusable pieces in both back-end and front-end. For the front-end code, I used Webpack to resolve dependencies, not only for the application’s own dependent modules, but also for third-party libraries, by "packing" these files into a few bundles. Apart from that, I learned how Webpack’s HMR increased productivity by injecting code into the browser incrementally, and refreshing the browser automatically on front-end code changes. Finally, I added support for debugging using source maps.
@@ -165,7 +182,7 @@ In this chapter, I made a big architectural change by separating the UI and the 
 
 </details>
 
-### trouble shooting
+### troubleshooting
 
 - Page 174 Listing 7-1 `api/package.json`: the dependency of graghql should be `14.6.0` instead of `0.13.2`. Otherwise we will run into a `TypeError: Cannot read property 'filter' of undefined` when starting the api server.
 - Page 190 Listing 7-17 `api/.eslintrc`: missing quotes around `rules`; better to leave quotes around `true`.
