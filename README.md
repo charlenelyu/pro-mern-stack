@@ -4,6 +4,7 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ## Table of Contents
 
+- [Chapter 10: React Forms](#chapter-10)
 - [Chapter 9: React Router](#chapter-9)
 - [Chapter 8: Modularization and Webpack](#chapter-8)
 - [Chapter 7: Architecture and ESLint](#chapter-7)
@@ -17,6 +18,10 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 # Chapter Notes
 
+## Chapter 10
+
+### notes
+
 ## Chapter 9
 
 In this chapter, I learned how to use React Router to implement client-side routing. I added a report page to the Issue Tracker application, and created a navigation bar so that the user can navigate between different views. I also learned how to connect the URL in the browser with what is shown in the page, and how parameters and query strings can be used to tweak the page contents. Using these facilities, I implemented a filter to display certain issues based on the status field, and added features that let users to edit an issue or explore the detail of an issue.
@@ -24,6 +29,9 @@ In this chapter, I learned how to use React Router to implement client-side rout
 ![ch09](/readme-images/ch09.png)
 
 ### notes
+
+<details>
+<summary>click for details</summary>
 
 - Simple Routing
   - To navigate between different views of the application, routing is needed. Routing links the state of the page to the URL in the browser.
@@ -91,6 +99,8 @@ In this chapter, I learned how to use React Router to implement client-side rout
     - However, a refresh on any of the views will fail. That’s because the URL is currently pointing to `/issues` and the browser makes a request to the server for `/issues`, which is not handled by the UI server.
     - To address this, make a change to the UI server, which returns `index.html` for any URL that is not handled otherwise.
     - There is still one change left: change `webpack.config.js` to set the `publicPath` configuration.
+
+</details>
 
 ### troubleshooting
 
