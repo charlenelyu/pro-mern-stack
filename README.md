@@ -22,6 +22,23 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ### notes
 
+- Controlled Components
+  - To show a value in the form input, the component has to be controlled by the parent via a state variable or props variable.
+  - In `issueFilter.jsx`, set the status filter as a controlled component, using `URLSearchParams` to extract its current value during `render()`. After this change, a refresh will show the current value of the filter rather than the default value `All`.
+- Controlled Components in Forms
+  - In this section, we'll implement a form for the filter to let users make changes and then apply them all using an Apply button. We'll also add a Reset button that gives users an option to reset the filter to the original one.
+  - Add an Apply button with an apply handler.
+  - Remove all code in the `onChangeStatus()` (which will be part of the method `applyFilter()` later).
+  - Create a state variable to store the value of the input that can be updated to reflect the new value in the dropdown.
+    - Initialize the state variable to the URL value in the constructor.
+    - Use this state variable as the value of the dropdown input during `render()`.
+    - In `onChangeStatus()`, use `setState()` to  set the state variable to the new value, which is supplied as part of the event argument as `event.target.value`.
+    - Now, the input value can be accessed via `this.state.status`.
+  - Implement method `applyFilter()`, which accesses the current value and uses the history to push the new status filter. Bind this new method to `this` in the constructor.
+  - To make the new filter reflect when the link is clicked, we need a lifecycle method `componentDidUpdate` that tells us that a property has changed and show the filter again.
+  - Add a Reset button. To enable the button only when there are changes, we need a state variable called `changed`, which will be set to `true` within `onChange`, and to `false` in the constructor and when the filter is reset.
+  - Implement method `showOriginalFilter()`, and bind it to `this` in the constructor.
+
 ## Chapter 9
 
 In this chapter, I learned how to use React Router to implement client-side routing. I added a report page to the Issue Tracker application, and created a navigation bar so that the user can navigate between different views. I also learned how to connect the URL in the browser with what is shown in the page, and how parameters and query strings can be used to tweak the page contents. Using these facilities, I implemented a filter to display certain issues based on the status field, and added features that let users to edit an issue or explore the detail of an issue.
