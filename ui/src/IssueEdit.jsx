@@ -47,9 +47,10 @@ export default class IssueEdit extends React.Component {
     });
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
     const { issue, invalidFields } = this.state;
+    if (Object.keys(invalidFields).length !== 0) return;
 
     const query = `mutation issueUpdate(
       $id: Int!
