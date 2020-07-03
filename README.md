@@ -38,6 +38,22 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - To make the new filter reflect when the link is clicked, we need a lifecycle method `componentDidUpdate` that tells us that a property has changed and show the filter again.
   - Add a Reset button. To enable the button only when there are changes, we need a state variable called `changed`, which will be set to `true` within `onChange`, and to `false` in the constructor and when the filter is reset.
   - Implement method `showOriginalFilter()`, and bind it to `this` in the constructor.
+- More Filters
+  - In this section, we'll add a filter on the Effort field. We’ll need two fields, a minimum and a maximum value to filter on, both of which are optional.
+  - Change the API to implement this filter.
+    - Change the schema to add two more arguments to the `issueList` API, both integers, called `effortMin` and `effortMax`.
+    - In `issue.js`, create a `effort` property of the MongoDB filter and set the `$gte` and `$lte` options.
+  - Change the UI to add two inputs for the effort filter.
+    - In `IssueList.jsx`: get two extra filter parameters from the URL's search parameters, and use them in a modified GraphQL query to fetch the list of issues. At this point, we’ll be able to test these changes by typing the filter parameters in the URL.
+    - In `IssueFilter.jsx`:
+      - Add two state variables for the inputs of the new filter in both constructor and `showOriginalFilter()`;
+      - Add input fields for these variables in the filter form
+      - Add two `onChange` handler for two fields and bind these methods to `this` in the constructor. Remember to check if the text can be converted to a number in the handler.
+      - In `applyFilter()`, use the state variables to set the new location in the history. Since there are more variables, let’s use `URLSearchParams` to construct the query string rather than use plain string templates.
+
+### troubleshooting
+
+- Page 272 Listing 10-2 (also other lists in this chapter): a pair of single quotes `''` is repeatly mistyped as a single double quotes `“`.
 
 ## Chapter 9
 
