@@ -20,6 +20,11 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ## Chapter 10
 
+In this chapter, I learned how to deal with forms in React, and started to take in a lot more user input with the help of forms. I converted the hard-coded filter to something more flexible, and filled in the Edit page. I also completed the CRUD paradigm by adding the Update and Delete operation for issues. Another important thing is that I created specialized input components for different data types.
+
+![ch10-1](/readme-images/ch10-1.png)
+![ch10-2](/readme-images/ch10-2.png)
+
 ### notes
 
 - Controlled Components
