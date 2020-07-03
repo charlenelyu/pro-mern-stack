@@ -139,6 +139,10 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - So the process will be: retrieve the issue based on the given ID from the `issues` collection -> add the `deleted` field -> save it to `deleted_issues` -> delete it from the `issues` collection.
   - In `issue_handler.js`, connect the API to its resolver.
   - Initialize the `deleted_issues` collection in `init.mongo.js`.
+- Deleting an Issue
+  - The UI changes for deleting an issue is similar to what we did for closing an issue.
+  - In `IssueTable.jsx`, add a button and pass the necessary callbacks through `IssueTable` to `IssueRows`.
+  - In `IssueList.jsx`, implement the `closeIssue()` method.
 
 ### troubleshooting
 
