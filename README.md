@@ -73,7 +73,7 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 - Number Input
   - In this section, we'll create a specialized input component for number inputs. We’ll use this for the effort field in the Edit page in place of a plain `<input>` element.
   - Create a new file called `NumInput.jsx` under `ui/src/` directory.
-    - Define the conversion functions that take in a string and convert to a number and vice versa.
+    - Define the conversion functions `format()` and `unformat()` that take in a string and convert to a number and vice versa.
     - In the constructor of the component, set a state variable (which we will use as the value for the `<input>` element) after converting the value passed in as props to a string.
     - In the `onChange()` handler, check for the input containing valid digits and set the state if it is, as we did in the filter form.
     - In the `onBlur()` handler, call the parent’s `onChange()` when the input loses focus. While calling the parent’s `onChange()`, pass the value in the natural data type as a second argument.
@@ -84,6 +84,19 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - After these changes, if test the application, we'll find that the value in the effort field doesn’t change when we use Next/Prev buttons. To solve this problem, we need to construct the component again with a new initial property. The best way to do this is to assign a `key` property to the component that changes when a new issue is loaded.
     - Remove the replacement of `null` to an empty string for the effort field, as this will be handled by `NumInput`.
   - Now, we should be able to edit the effort field and see that the value changes according to the issue object when you click on Next/Prev. Also, when clicking Submit, the value of effort displayed on the console is a number.
+- Date Input
+  - Create a new file called `DateInput.jsx` under `ui/src/` directory.
+    - For a date, the validity can be determined only when the user has finished typing. Losing focus from the input element can be used as the signal. So, in the `onBlur()` handler, we’ll check for validity of the date, then inform the parent of the new validity use a new optional callback named `onValidityChange()`. We'll also save the focused state and the validity in new state variables called `focused` and `valid`.
+    - In `unformat()`, convert string to a date object. For an empty string, which is allowed to be a valid input, we’ll use the `Date(string)` constructor.
+    - Rather than have a single `format()` function as in `NumInput`, we’ll have two separate functions for the display format (using `toDateString()`) and the editable format (`YYYY-MM-DD`) of the date.
+    - In `onChange()`, check for valid characters and set the state if valid.
+    - In `render()` method, display the user typed-in value if it is invalid, or if the user is editing it. Otherwise, display the display format or the editable format converted from the original value.
+  - In `IssueEdit.jsx`, change the `due` field to a `DateInput` component.
+    - Add a new method `onValidityChange()` to store the validity status of each input in a state variable called `invalidFields`.
+    - In the constructor and `loadData()`, initialize `invalidFields` to an empty object.
+    - In `render()`, add a new variable which is used to display a message showing the presence of any invalid fields. We’ll initialize this message only if there are any invalid fields (available via `invalidFields`). Use a class called `error` to emphasize error messages.
+  - In `index.html`, make some changes in the stylesheet to show error messages in a highlighted manner.
+  - Now, if we enter a valid date and click Submit, we'll see the actual date object being stored and displayed in the console. If we enter an invalid date, there will be a red bordered input as well as an error message in red.
 
 ### troubleshooting
 
