@@ -51,6 +51,14 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - Install the `react-router-bootstrap` package.
     - Place each `NavItem` on the left-side as a child of the `LinkContainer`.
     - `LinkContainer` supports all properties that the `NavLink` does. Use the `to` property to set the path of the routes.
+- Panels
+  - In this section, we'll decorate the Filter section using the `Panel` component, which is a great way to show sections separately using a border and an optional heading.
+  - The `Panel` component consists of an optional heading (`Panel.Heading`) and a panel body (`Panel.Body`). The panel body is where we’ll place the `<IssueFilter />` instance.
+  - To add a heading with the text Filter, wrap the text inside a `Panel.Title` component to make it stand out.
+  - To save space, we can collapse the panel by adding the `collapsible` property to the `Panel.Body` and making the panel title control the collapse behavior by setting its `toggle` property.
+  - In `Page.jsx`, wrap the body of the page with a `<Grid>` component to add margins.
+  - There are two kinds of grid containers in Bootstrap: a fluid one, which fills the entire page, and a fixed one (the default), which has a fixed size, but one that adapts to the screen size.
+  
 
 ### troubleshooting
 
