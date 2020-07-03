@@ -104,6 +104,16 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - In the `onChange()` method, any input will be allowed.
     - In the `render()` method, to handle variations in the HTML element name, instead of hard-coding the element tag, we pass it in as an optional `tag` property default to `input`. Since the tag name is a varialbe, We'll have to use the `React.createElement()` method rather than JSX.
   - In `IssueEdit.jsx`, replace all textual input elements to `TextInput`.
+- Update API
+  - In this section, we'll implement an Update API for saving the edited issue to the database.
+  - Change the schema to reflect this new API.
+    - Add a new input data type called `IssueUpdateInputs` with all possible fields that can be changed, and all of them optional.
+    - Add a new mutation entry point called `updateIssue`, which will return the new modified issue.
+  - In `issue.js`, implement the resolver for this API called `update()`.
+    - Validate the issue based on the new inputs when the fields that affect the validity are changing: Title, Status, or Owner.
+    - Once the validation succeeds, use the `updateOne()` function with the `$set` operation to save the changes.
+    - Export the `update()` function in `module.exports`.
+  - In `api_handler.js`, connect the API to its resolver.
 
 ### troubleshooting
 
