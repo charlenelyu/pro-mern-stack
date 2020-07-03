@@ -130,6 +130,15 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - Use a named query called `closeIssue` that takes in an issue ID as a query variable.
     - Call the `issueUpdate` API similar to the regular `update` call, but with the changes hard-coded to setting the status to closed.
     - Since the state is immutable, we have to make a copy of the `issue` state variable. As recommended, we'll use a callback for `this.setState()` that takes in the previous state. If the execution is unsuccessful, just reload the entire data.
+- Delete API
+  - In the remaining part of this chapter, we'll implement the delete operation to complete all set of CRUD.
+  - Modify the schema to include the Delete API, which just takes the ID of the field to be deleted. We’ll return a Boolean value to indicate successful deletion.
+  - In `issue.js`, implement the Delete API’s resolver. Note that `delete` is a reserved keyword in JavaScript, so we’ll name the function `remove()` but export it with the name `delete`.
+    - Rather than just deleting the record for the given ID, we move it to trash so that we have a chance to recover it.
+    - We'll use a new collection called `deleted_issues` to store all deleted issues, and add a `deleted` field to save the date and time of deletion.
+    - So the process will be: retrieve the issue based on the given ID from the `issues` collection -> add the `deleted` field -> save it to `deleted_issues` -> delete it from the `issues` collection.
+  - In `issue_handler.js`, connect the API to its resolver.
+  - Initialize the `deleted_issues` collection in `init.mongo.js`.
 
 ### troubleshooting
 
