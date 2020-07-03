@@ -4,6 +4,7 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ## Table of Contents
 
+- [Chapter 11: React-Bootstrap](#chapter-11)
 - [Chapter 10: React Forms](#chapter-10)
 - [Chapter 9: React Router](#chapter-9)
 - [Chapter 8: Modularization and Webpack](#chapter-8)
@@ -18,6 +19,12 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 # Chapter Notes
 
+## Chapter 11
+
+### notes
+
+### troubleshooting
+
 ## Chapter 10
 
 In this chapter, I learned how to deal with forms in React, and started to take in a lot more user input with the help of forms. I converted the hard-coded filter to something more flexible, and filled in the Edit page. I also completed the CRUD paradigm by adding the Update and Delete operation for issues. Another important thing is that I created specialized input components for different data types.
@@ -26,6 +33,9 @@ In this chapter, I learned how to deal with forms in React, and started to take 
 ![ch10-2](/readme-images/ch10-2.png)
 
 ### notes
+
+<details>
+<summary>click for details</summary>
 
 - Controlled Components
   - To show a value in the form input, the component has to be controlled by the parent via a state variable or props variable.
@@ -148,6 +158,8 @@ In this chapter, I learned how to deal with forms in React, and started to take 
   - The UI changes for deleting an issue is similar to what we did for closing an issue.
   - In `IssueTable.jsx`, add a button and pass the necessary callbacks through `IssueTable` to `IssueRows`.
   - In `IssueList.jsx`, implement the `closeIssue()` method.
+
+</details>
 
 ### troubleshooting
 
