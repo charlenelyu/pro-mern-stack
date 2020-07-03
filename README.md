@@ -114,6 +114,12 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - Once the validation succeeds, use the `updateOne()` function with the `$set` operation to save the changes.
     - Export the `update()` function in `module.exports`.
   - In `api_handler.js`, connect the API to its resolver.
+- Updating an Issue
+  - With the Update API, we can write the `handleSubmit()` method to make a call to the API and save the changes.
+    - When using the named query, the query variable called `changes` need to exclude the fields that cannot be changed (`id` and `created`). This can be done using the `rest` operator `...`.
+    - After the object is saved using the GraphQL API with the named query, replace the current issue with the returned issue, which requires a `setState()` call with the returned issue.
+    - Show an alert message to indicate success of the operation.
+    - Return without doing anything if there are invalid fields in the form.
 
 ### troubleshooting
 
