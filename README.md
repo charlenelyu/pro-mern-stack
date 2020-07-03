@@ -120,6 +120,16 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - After the object is saved using the GraphQL API with the named query, replace the current issue with the returned issue, which requires a `setState()` call with the returned issue.
     - Show an alert message to indicate success of the operation.
     - Return without doing anything if there are invalid fields in the form.
+- Updating a Field
+  - In this section, we'll use the same API to close an issue in a quick way directly from the Issue List page, by setting its status to `Closed`.
+  - In `IssueTable.jsx`:
+    - Add a button in every row as part of the Actions column.
+    - On click of this button, we’ll initiate a close action, which can be a function passed in as a callback in the props. The callback needs to be passed from `IssueList` via `IssueTable` to `IssueRow`.
+    - To identify which issue to close, we have to receive the index of the issue as another value in the props, which can be computed while iterating over the list of issues.
+  - In `IssueList.jsx`, implement the `closeIssue()` method.
+    - Use a named query called `closeIssue` that takes in an issue ID as a query variable.
+    - Call the `issueUpdate` API similar to the regular `update` call, but with the changes hard-coded to setting the status to closed.
+    - Since the state is immutable, we have to make a copy of the `issue` state variable. As recommended, we'll use a callback for `this.setState()` that takes in the previous state. If the execution is unsuccessful, just reload the entire data.
 
 ### troubleshooting
 
