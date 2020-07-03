@@ -23,6 +23,17 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ### notes
 
+- Bootstrap Installation
+  - Install React-Bootstrap via `npm install react-bootstrap@0`.
+  - React-Bootstrap contains a library of React components and has no CSS styles or themes itself. It requires Bootstrap stylesheet to be included in the application to use these components.
+  - Install Bootstrap via `npm install bootstrap@3`.
+  - The latest version of Bootstrap (Version 4) is not yet supported by React-Bootstrap.
+  - Include the Bootstrap stylesheet in the application.
+    - We’ll just keep a symbolic link to the Bootstrap distribution under the `public` directory and include the CSS like the other static files such as `index.html`.
+    - The command to achieve this is `ln -s ../node_modules/bootstrap/dist public/bootstrap`.
+    - In `index.html`, add a link to the main Bootstrap style sheet. (`<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">`)
+  - To fit the application into the mobile screen, add a meta tag called `view point` in the main page. (`<meta name="viewport" content="width=device-width, initial-scale=1.0">`)
+
 ### troubleshooting
 
 ## Chapter 10
