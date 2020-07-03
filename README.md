@@ -33,6 +33,13 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - The command to achieve this is `ln -s ../node_modules/bootstrap/dist public/bootstrap`.
     - In `index.html`, add a link to the main Bootstrap style sheet. (`<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">`)
   - To fit the application into the mobile screen, add a meta tag called `view point` in the main page. (`<meta name="viewport" content="width=device-width, initial-scale=1.0">`)
+- Buttons
+  - In this section, we'll replace the Apply and Reset buttons in the Issue Filter with Bootstrap buttons.
+  - A simple text-based button can be created using the `<Button>` component, which uses the `bsStyle` property to make buttons look distinct.
+  - Apart from the default, which shows the button with a white background, the allowed styles are `primary`, `success`, `info`, `warning`, `danger`, and `link`.
+  - To use icons, we need to use the `Glyphicon` component. The `bsSize` property can set the size of the icon.
+  - Since the icons’ intended actions are not too obvious, it’s good to have a tooltip that is shown on hovering over the button.
+  - In React, the way to do this to us the `OverlayTrigger` component to wrap the button and takes in the `Tooltip` component as a property.
 
 ### troubleshooting
 
