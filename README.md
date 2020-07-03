@@ -97,6 +97,13 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - In `render()`, add a new variable which is used to display a message showing the presence of any invalid fields. We’ll initialize this message only if there are any invalid fields (available via `invalidFields`). Use a class called `error` to emphasize error messages.
   - In `index.html`, make some changes in the stylesheet to show error messages in a highlighted manner.
   - Now, if we enter a valid date and click Submit, we'll see the actual date object being stored and displayed in the console. If we enter an invalid date, there will be a red bordered input as well as an error message in red.
+- Text Input
+  - It's convenient to let a component handle `null` values for text inputs.
+  - Create a `TextInput` component with some differences.
+    - The `format()` and `unformat()` exists simply for converting to and from null values.
+    - In the `onChange()` method, any input will be allowed.
+    - In the `render()` method, to handle variations in the HTML element name, instead of hard-coding the element tag, we pass it in as an optional `tag` property default to `input`. Since the tag name is a varialbe, We'll have to use the `React.createElement()` method rather than JSX.
+  - In `IssueEdit.jsx`, replace all textual input elements to `TextInput`.
 
 ### troubleshooting
 
