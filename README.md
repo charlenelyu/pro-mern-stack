@@ -64,6 +64,26 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - In the `onChange()` method, get the name of the field from the event’s target, and set the new state. Note that the recommended way is to supply a callback to the `setState` method that takes in the previous state and returns a new state.
   - Add lifecycle methods `componentDidMount()` and `componentDidUpdate()` to load the data.
   - In `handleSubmit()`, let’s just display the contents of the issue on the console for now.
+- Specialized Input Component
+  - Ideally, we want the form’s state to store the fields in their natural data types. We also want all of the data type conversion routines to be shared.
+  - A good solution is to make reusable UI components for the non-string inputs.
+    - In all these components, we’ll take the approach of a disjoint state.
+    - When the user is not editing the component, the component is controlled and its only function is to display the current value.
+    - When the user starts editing, we’ll make it an uncontrolled component. In this state, the value in the parent will not be updated, and the two values (current and edited) will be disjointed. Once the user has finished editing, the two values will be brought back in sync, provided the value is valid.
+- Number Input
+  - In this section, we'll create a specialized input component for number inputs. We’ll use this for the effort field in the Edit page in place of a plain `<input>` element.
+  - Create a new file called `NumInput.jsx` under `ui/src/` directory.
+    - Define the conversion functions that take in a string and convert to a number and vice versa.
+    - In the constructor of the component, set a state variable (which we will use as the value for the `<input>` element) after converting the value passed in as props to a string.
+    - In the `onChange()` handler, check for the input containing valid digits and set the state if it is, as we did in the filter form.
+    - In the `onBlur()` handler, call the parent’s `onChange()` when the input loses focus. While calling the parent’s `onChange()`, pass the value in the natural data type as a second argument.
+    - In the `render()` method, render an `<input>` element with the value set to the state variable and the `onChange()` and `onBlur()` handlers. Further, copy over all other properties that the parent may want to supply as part of props for the actual `<input>` element.
+  - In `IssueEdit.jsx`, use this new UI component.
+    - Replace `<input>` with `<NumInput>`
+    - In the `onChange()` handler, include the value in the natural data type that the component may send us as the second argument.
+    - After these changes, if test the application, we'll find that the value in the effort field doesn’t change when we use Next/Prev buttons. To solve this problem, we need to construct the component again with a new initial property. The best way to do this is to assign a `key` property to the component that changes when a new issue is loaded.
+    - Remove the replacement of `null` to an empty string for the effort field, as this will be handled by `NumInput`.
+  - Now, we should be able to edit the effort field and see that the value changes according to the issue object when you click on Next/Prev. Also, when clicking Submit, the value of effort displayed on the console is a number.
 
 ### troubleshooting
 
