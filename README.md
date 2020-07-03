@@ -50,10 +50,25 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
       - Add input fields for these variables in the filter form
       - Add two `onChange` handler for two fields and bind these methods to `this` in the constructor. Remember to check if the text can be converted to a number in the handler.
       - In `applyFilter()`, use the state variables to set the new location in the history. Since there are more variables, let’s use `URLSearchParams` to construct the query string rather than use plain string templates.
+- Edit Form
+  - In this section, we'll create a complete form for the Edit page in `IssueEdit.jsx`, and also a Submit button. But we will not handle the submission of the form yet.
+  - Define the state of the component in the constructor, which is initiated with an empty object for the issue.
+  - Replace the empty issue with the issue fetched from the server in a method called `loadData()`.
+    - Use the `issue` API to load the data asynchronously.
+    - Since all input fields’ contents are strings, we can’t use the result of the API call directly.Convert the natural data types of the fields of issue into strings. Further, add a `null` check for all the optional fields and use the empty string as the value.
+    - If the API call failed (indicated by data being `null`), we’ll just use an empty issue in the state.
+  - Implement the `render()` method.
+    - There are two special cases: when the data has not been fetched yet or the given ID doesn’t exist, we'll have the issue object as an empty one. To handle these two cases, let’s check for the presence of the `id` field in the issue object and avoid rendering the form.
+    - If these two conditions did not match, we can render the form. The form will need a Submit button and a submit handler, which we’ll name `handleSubmit()`.
+    - For the filter form, we need a `onChange` event handler for each of the inputs. To reduce code duplication, we'll use a common `onChange` event handler for all inputs, taking advantage of the fact that the event’s target has a property called `name`, which will reflect the name of the input field in the form.
+  - In the `onChange()` method, get the name of the field from the event’s target, and set the new state. Note that the recommended way is to supply a callback to the `setState` method that takes in the previous state and returns a new state.
+  - Add lifecycle methods `componentDidMount()` and `componentDidUpdate()` to load the data.
+  - In `handleSubmit()`, let’s just display the contents of the issue on the console for now.
 
 ### troubleshooting
 
 - Page 272 Listing 10-2 (also other lists in this chapter): a pair of single quotes `''` is repeatly mistyped as a single double quotes `“`.
+- Page 285 Listing 10-7: similar issue to chapter 9, line `const data = await graphQLFetch(query, { id });` should be `const data = await graphQLFetch(query, { id: parseInt(id, 10) });`.
 
 ## Chapter 9
 
