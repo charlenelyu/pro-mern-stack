@@ -34,12 +34,23 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - In `index.html`, add a link to the main Bootstrap style sheet. (`<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">`)
   - To fit the application into the mobile screen, add a meta tag called `view point` in the main page. (`<meta name="viewport" content="width=device-width, initial-scale=1.0">`)
 - Buttons
-  - In this section, we'll replace the Apply and Reset buttons in the Issue Filter with Bootstrap buttons.
+  - In this section, we'll replace some buttons in the Issue Filter with Bootstrap buttons.
   - A simple text-based button can be created using the `<Button>` component, which uses the `bsStyle` property to make buttons look distinct.
   - Apart from the default, which shows the button with a white background, the allowed styles are `primary`, `success`, `info`, `warning`, `danger`, and `link`.
   - To use icons, we need to use the `Glyphicon` component. The `bsSize` property can set the size of the icon.
   - Since the icons’ intended actions are not too obvious, it’s good to have a tooltip that is shown on hovering over the button.
   - In React, the way to do this to us the `OverlayTrigger` component to wrap the button and takes in the `Tooltip` component as a property.
+- Navigation Bar
+  - In this section, we’ll style the navigation links in the header and add a footer that is visible on all pages.
+  - The starting component to create a navigation bar is `Navbar`. Each item is a `NavItem`. These items can be grouped together in a `Nav`.
+    - For Issue Tracker, we'll use two `Nav` elements, one for the left side of the navigation bar and another for the right side.
+    - The right side `Nav` can be aligned to the right using the `pullRight` property.
+  - As for the application title, use `Navbar.Header` and `Navbar.Brand`, which should appear before all the `Nav` elements.
+  - As for the extended dropdown menu, use component `NavDropdown`. Each menu item is a `MenuItem` component.
+  - Add links to the navigation items. The recommended way is to use the `react-router-bootstrap` package, which provides a wrapper called `LinkContainer` acting as the React Router’s `NavLink`, at the same time letting its children have their own rendering.
+    - Install the `react-router-bootstrap` package.
+    - Place each `NavItem` on the left-side as a child of the `LinkContainer`.
+    - `LinkContainer` supports all properties that the `NavLink` does. Use the `to` property to set the path of the routes.
 
 ### troubleshooting
 
