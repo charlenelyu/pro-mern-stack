@@ -67,7 +67,7 @@ class IssueFilter extends React.Component {
     if (status) params.set('status', status);
     if (effortMin) params.set('effortMin', effortMin);
     if (effortMax) params.set('effortMax', effortMax);
-    
+
     const search = params.toString() ? `?${params.toString()}` : '';
     history.push({ pathname: '/issues', search });
   }
