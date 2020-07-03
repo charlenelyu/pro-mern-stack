@@ -58,7 +58,23 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - To save space, we can collapse the panel by adding the `collapsible` property to the `Panel.Body` and making the panel title control the collapse behavior by setting its `toggle` property.
   - In `Page.jsx`, wrap the body of the page with a `<Grid>` component to add margins.
   - There are two kinds of grid containers in Bootstrap: a fluid one, which fills the entire page, and a fixed one (the default), which has a fixed size, but one that adapts to the screen size.
-  
+- Table
+  - In this section, we’ll convert the plain table into a Bootstrap table, which looks better, expands to fit the screen, and highlights a row on hover. Further, we’ll make the entire row clickable to select the issue to display its description. We’ll also convert the Edit link into a button.
+  - To achieve this, we'll use the `LinkContainer` and `Table` components in `IssueTable.jsx`.
+  - Useful Properties of `Table` component
+    - `striped`: Highlights alternate rows with a different background.
+    - `bordered`: Adds a border around the rows and cells.
+    - `condensed`: reduce white space around the text.
+    - `hover`: Highlights the row under the cursor.
+    - `responsive`: On smaller screens, makes the table horizontally scrollable instead of reducing the width of the columns.
+  - Replace `<table>` with `<Table>`
+  - To replace the `Select` link with the entire row, use a `LinkContainer` to wrap the entire row and let it navigate to the same location using the `to` property.
+    - Note that `LinkContainer` automatically adds the active class to the wrapped element if the route matches the link path. Bootstrap will highlight such rows with a gray background.
+  - Use the `Button` and `Glyphicon` components and a `Tooltip` and `OverlayTrigger` to convert the Edit link to a button with an icon. But instead of the `onClick()` event handler, we'll wrap the button with a `LinkContainer`, and set the `to` property to the original link.
+  - There's still a minor problem: a click on the Close or Delete buttons will also have the side-effect of selecting the row. This is because we now have an `onClick()` handler on the row.
+    - Separate the handlers into explicit functions (as opposed to anonymous functions within the onClick property).
+    - Call `e.preventDefault()` in the handlers.
+  - In `index.html`, remove all old styles for the table, and give an indication that the table rows are clickable by changing the cursor to a pointer.
 
 ### troubleshooting
 
