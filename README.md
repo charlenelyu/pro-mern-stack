@@ -21,6 +21,10 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ## Chapter 11
 
+In this chapter, I learned the basics of React-Bootstrap, a UI framework to make a web application look professionally styled and be responsive. With its help, I added some polish to the UI of the Issue Tracker.
+
+![ch11](/readme-images/ch11.png)
+
 ### notes
 
 - Bootstrap Installation
