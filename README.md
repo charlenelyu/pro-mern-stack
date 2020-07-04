@@ -126,8 +126,18 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - To show and hide the alert, we’ll use React-Bootstrap’s `Collapse` component, which takes in a property called `in`. When `in` is set to `true`, the child element shows (fades in) and when is set to `false`, it hides (fades out).
   - To set up an automatic dismiss after five seconds, we can expect a `componentDidUpdate()` call whenever the Toast is being shown. Within this lifecycle method, add a timer and call `onDismiss` on its expiry.
   - Make changes to all the components that need to show a success or error message.
-
-### troubleshooting
+- Modals
+  - In this section, we’ll replace the in-page IssueAdd component with a modal dialog that is launched by clicking the Create Issue navigation item in the header.
+  - When a modal is rendered, it is rendered outside the main `<div>` of the DOM that holds the page, which can be placed anywhere in the component hierarchy. In order to launch or dismiss the modal, the Create Issue navigation item is the controlling component.
+  - Create a new component `IssueAddNavItem` that is self-contained: it displays the navigation item, launches the dialog and controls its visibility, creates the issue, and routes to the Issue Edit page on a successful creation.
+    - Move the `NavItem` for Create Issue from the navigation bar to this new component.
+    - Add an `onClick()` handler that shows the modal dialog by calling a method `showModal()`.
+    - Since the `Modal` component can be placed anywhere, add it right after the `NavItem`.
+    - `Modal` requires two properties: `showing` controls the visibility of the modal dialog, and an `onHide()` handler will be called when the user dismisses the dialog.
+    - Within the `Modal` component, use `Modal.Header` to show the title of the modal. Add a vertical form (the default) with two fields, Title and Owner in `Modal.Body`. Use `Modal.Footer` to show a button toolbar with a Submit and a Cancel button.
+    - When the user clicks on Submit, call `handleSubmit()` and close the Modal dialog. On success, we’ll show the Issue Edit page by pushing the Edit page’s link to the history. When the user clicks on Cancel, hide the modal dialog.
+  - In `Page.jsx`, replace `NavItem` with this new component.
+  - In `IssueList.jsx`, remove the rendering of `IssueAdd` and the `createIssue` function.
 
 ## Chapter 10
 
