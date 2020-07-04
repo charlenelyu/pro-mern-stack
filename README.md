@@ -87,6 +87,16 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - By default, it will cause the two inputs to appear one below the other.
     - The `InputGroup.Addon` component can be used to display the inputs next to each other, as well as show the dash between the two inputs.
   - For now, we used a space character between the Apply and Reset buttons. A better way is to use the `ButtonToolbar` component.
+- The Grid System
+  - In this section, we'll use Bootstrap’s grid system to lay out the Issue Filter in a better way, letting each field float horizontally, but one below the other on smaller screens.
+  - Grid System Basics
+    - The horizontal space is divided into a maximum of 12 columns.
+    - A cell (`Col` component) can occupy one or more columns.
+    - The cells wrap if there are more than 12 column-space cells within a row (`Row` component). A new row is required if there’s a need to force a break in the flow of cells.
+    - In the fluid grid system, rows are more like paragraphs rather than lines. A paragraph (row) can contain multiple lines. As the paragraph width (screen width) reduces, it will need more lines. It’s only when you want to break two sets of sentences (sets of cells) that you really need another paragraph (row).
+    - Properties `xs`, `sm`, `md`, and `lg` of the `Col` component denote different screen width from extra small to large. If not specified, the value applicable to the screen size *lesser* than this size will be used (e.g. using `xs` means the same cell widths are used for all screen sizes).
+  - As for forms, the best way to use the grid system is to have a single row and specify how many columns each `FormControl` (one cell) occupies at different screen widths.
+    - In the filter, we have three cells of roughly equal width: status input (with its label), effort inputs (with their label), and the buttons (together).
 
 ### troubleshooting
 
