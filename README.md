@@ -97,6 +97,13 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - Properties `xs`, `sm`, `md`, and `lg` of the `Col` component denote different screen width from extra small to large. If not specified, the value applicable to the screen size *lesser* than this size will be used (e.g. using `xs` means the same cell widths are used for all screen sizes).
   - As for forms, the best way to use the grid system is to have a single row and specify how many columns each `FormControl` (one cell) occupies at different screen widths.
     - In the filter, we have three cells of roughly equal width: status input (with its label), effort inputs (with their label), and the buttons (together).
+- Inline Forms
+  - For small forms with two or three inputs that can all fit in one line, we want the form controls next to each other, including the labels. The Issue Add form in our application is a great example.
+  - Differences between inline form and the grid-based form:
+    - For the grid-based forms, we didn’t have to enclose the controls within a `<Form>`, since the default behavior of the groups was a vertical layout (one below the other, including labels). For inline forms, we need a `<Form>` with the inline property to wrap around the form controls.
+    - Unlike the grid-based form, an inline form needs no columns and rows. The `FormGroup` can be placed one after the other.
+    - In the inline forms, the button does not need a `FormGroup` around it, and there are no alignment implications if a `ControlLabel` is not given for a button.
+    - For inline forms, we need to manually add space using `{' '}` between the label and the control, as well as between form groups.
 
 ### troubleshooting
 
