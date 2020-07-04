@@ -75,6 +75,18 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - Separate the handlers into explicit functions (as opposed to anonymous functions within the onClick property).
     - Call `e.preventDefault()` in the handlers.
   - In `index.html`, remove all old styles for the table, and give an indication that the table rows are clickable by changing the cursor to a pointer.
+- Forms
+  - In this section, we’ll use many new React-Bootstrap components to replace the simple `<input>` and `<select>` options in React forms.
+  - The common input types are instantiated using a `FormControl`.
+    - By default, it uses a regular `<input>` type to render the actual element.
+    - The `componentClass` property can change this default to any other element type, (e.g. `select`)
+    - The rest of the properties, like `value` and `onChange`, are the same as the `<input>` or `<select>` elements.
+  - A label can be associated with `FormControl` using the `ControlLabel` component. The only child of this component is the label text.
+  - To keep the label and the control together, they need to be put together under a `FormGroup`.
+  - For inputs like Effort that are made up of two inputs, we can use an `InputGroup` to enclose two `FormControls`
+    - By default, it will cause the two inputs to appear one below the other.
+    - The `InputGroup.Addon` component can be used to display the inputs next to each other, as well as show the dash between the two inputs.
+  - For now, we used a space character between the Apply and Reset buttons. A better way is to use the `ButtonToolbar` component.
 
 ### troubleshooting
 
