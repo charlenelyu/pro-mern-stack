@@ -112,6 +112,20 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - For other `<FormControl>`s, we can specify our own component classes using the `componentClass` property as well.
   - Since the buttons don’t need a label, we can specify an offset to where the column starts.
   - Bootstrap’s form controls support displaying invalid input fields in a distinctive manner, using the `validationState` property of `FormGroup`.
+- Validation Alerts
+  - Bootstrap provides nicely styled alerts via the `Alert` component.
+  - The `Alert` component has different styles for the message like `danger` and `warning`
+  - The `Alert` component also has the ability to show a Close icon, by taking in a callback named `onDismiss`. This callback is called when the user clicks the Close icon.
+- Toasts
+  - In this section, we'll look at result messages and informational alerts, that is, the reporting of successes and failures of an operation.
+  - Create a new custom component named `Toast`.
+    - The visibility will be controlled by the parent, which passes an `onDismiss` property that can be called to dismiss it.
+    - In addition to the Close icon’s click, there will also be a timer that calls this `onDismiss` callback when it expires.
+  - In the `render()` method, first add an `Alert` with the required attributes, all of which are passed in from the parent as props.
+  - To position the alert message close to the bottom-left corner of the window, we can enclose the alert within a `<div>` that is absolutely positioned using `position: fixed`.
+  - To show and hide the alert, we’ll use React-Bootstrap’s `Collapse` component, which takes in a property called `in`. When `in` is set to `true`, the child element shows (fades in) and when is set to `false`, it hides (fades out).
+  - To set up an automatic dismiss after five seconds, we can expect a `componentDidUpdate()` call whenever the Toast is being shown. Within this lifecycle method, add a timer and call `onDismiss` on its expiry.
+  - Make changes to all the components that need to show a success or error message.
 
 ### troubleshooting
 
