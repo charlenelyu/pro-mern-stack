@@ -104,6 +104,14 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - Unlike the grid-based form, an inline form needs no columns and rows. The `FormGroup` can be placed one after the other.
     - In the inline forms, the button does not need a `FormGroup` around it, and there are no alignment implications if a `ControlLabel` is not given for a button.
     - For inline forms, we need to manually add space using `{' '}` between the label and the control, as well as between form groups.
+- Horizontal Forms
+  - In this section, we'll change the Issue Edit page to a horizontal form, where the label appears to the left of the input, but each field appears one below the other. We'll also use the validation states that Bootstrap provides to highlight invalid input.
+  - First, replace `<form>` with Bootstrap’s `<Form>`. To lay out a horizontal form, we need the `horizontal` property.
+  - Enclose the entire form in a `Panel`, with the contents of the original `<h3>` as the header. `Panel.Body` consists of the form and the validation message after it. Next and Prev links can be placed in `Panel.Footer`.
+  - To specify how much width the label and the input will occupy, we need to enclose them within different `<Col>`s. And for the label, instead of using the `<ControlLabel>` component, we need to set the `componentClass` property of the `<Col>` to `ControlLabel` to have the intended effect of right-aligning the label.
+  - For other `<FormControl>`s, we can specify our own component classes using the `componentClass` property as well.
+  - Since the buttons don’t need a label, we can specify an offset to where the column starts.
+  - Bootstrap’s form controls support displaying invalid input fields in a distinctive manner, using the `validationState` property of `FormGroup`.
 
 ### troubleshooting
 
