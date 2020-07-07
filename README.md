@@ -4,6 +4,7 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ## Table of Contents
 
+- [Chapter 12: Server Rendering](#chapter-12)
 - [Chapter 11: React-Bootstrap](#chapter-11)
 - [Chapter 10: React Forms](#chapter-10)
 - [Chapter 9: React Router](#chapter-9)
@@ -19,6 +20,12 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 # Chapter Notes
 
+## Chapter 12
+
+### notes
+
+### troubleshooting
+
 ## Chapter 11
 
 In this chapter, I learned the basics of React-Bootstrap, a UI framework to make a web application look professionally styled and be responsive. With its help, I added some polish to the UI of the Issue Tracker.
@@ -26,6 +33,9 @@ In this chapter, I learned the basics of React-Bootstrap, a UI framework to make
 ![ch11](/readme-images/ch11.png)
 
 ### notes
+
+<details>
+<summary>click for details</summary>
 
 - Bootstrap Installation
   - Install React-Bootstrap via `npm install react-bootstrap@0`.
@@ -142,6 +152,8 @@ In this chapter, I learned the basics of React-Bootstrap, a UI framework to make
     - When the user clicks on Submit, call `handleSubmit()` and close the Modal dialog. On success, we’ll show the Issue Edit page by pushing the Edit page’s link to the history. When the user clicks on Cancel, hide the modal dialog.
   - In `Page.jsx`, replace `NavItem` with this new component.
   - In `IssueList.jsx`, remove the rendering of `IssueAdd` and the `createIssue` function.
+
+</details>
 
 ## Chapter 10
 
