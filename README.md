@@ -24,7 +24,20 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ### notes
 
+- New Directory Structure
+  - Split current source code into three directories
+    - keep the shared React components in `src`
+    - move the browser-specific file `App.jsx` to `browser`
+    - move the server-specific file `uiserver.js` to `server`
+  - Change the linting, compiling, and bundling configurations to reflect the new directory structure
+    - As for linting, we now need four `.eslintrc` files, one in the base `ui`, and one in each of the sub-directories.
+    - Add a `.babelrc` in the `browser` directory, which is a copy of the one in the `src` directory.
+    - In `App.jsx` and `uiserver.js`, change the location of the imported/required files.
+    - Change the entry points in `package.json` for the new location of `uiserver.js`, and in `webpack.config.js` for the new location of `App.jsx`.
+
 ### troubleshooting
+
+- Page 379 Listing 12-3: `rules`, `error`, `always` and `ignorePackages` need to be double quoted.
 
 ## Chapter 11
 
