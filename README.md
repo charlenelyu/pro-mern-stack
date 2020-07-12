@@ -123,6 +123,17 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - In the `componentDidMount()` method, data can be fetched and set in the state if `apiAbout` has not been initialized by the constructor.
     - In the `render()` method, use the state variable rather than the variable from the store.
   - In `render.jsx`, replace the GraphQL query with a call to `About.fetchData()`.
+- Generated Routes
+  - In this section, we’ll fix the mismatch errors that React is showing for the rest of the pages.
+    - First, instead of returning `index.html`, return the server-rendered HTML using the template for all the pages.
+    - Remove `index.html`. At this point, we'll find that the React error for mismatched `<div>` for all the pages is no longer seen.
+    - Now the main problem is that the data required via API calls needs to be available before rendering is initiated on the server.
+    - The only way to do this is by keeping a common source of truth for the list of routes available. Then, match the request’s URL against each route and figure out which component (and therefore, which fetchData() method) will match.
+      - store route metadata in a new file `routes.js`.
+    - The same source of truth should also be responsible for generating the actual `<Route>` components during a render.
+      - change `Contents.jsx` to generate `<Route>` components from `routes.js`).
+  - We still need to replace the call to `About.fetchData()` with something more generic.
+    - To do that, we need to use a function called `matchPath()` to determine which of the components would match the current URL that is passed in via the request object in `render.jsx`.
 
 ### troubleshooting
 
