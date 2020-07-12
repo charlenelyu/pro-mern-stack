@@ -47,7 +47,7 @@ const browserConfig = {
     }),
   ],
   devtool: 'source-map',
-}
+};
 
 const serverConfig = {
   mode: 'development',

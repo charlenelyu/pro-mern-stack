@@ -22,6 +22,12 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ## Chapter 12
 
+In this chapter, I explored server rendering, which generates the entire HTML source on the server and sends it to the browser. The book combined server rendering with browser rendering in a way that optimizes the advantages of both. Making sure that the browser render is identical to the server render is the primary complicating factor in this chapter. Both must share data that has been retrieved by the API.
+
+Even though I followed every step through the chapter, I couldn't get the initial data and issue-specific description to be displayed within the page source. Similar issues were posted on Piazza several times, some of them still remain unsolved, and I didn't find a solution to this after trying all approaches mentioned on those posts (including checking typos, recompiling source code). I'll go to the next chapter for now. Hope this issue can be resolved in later sections.
+
+![ch12](/readme-images/ch12.png)
+
 ### notes
 
 - Introduction
