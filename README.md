@@ -160,6 +160,9 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - We'll choose to modify the component `IssueList` to render its contained detail as well. This will cause the `IssueDetail` component to be greatly simplified to a stateless component.
   - In `routes.js`, Modify the `/issues` route to specify the ID parameter, which is optional.
   - Pull Up `IssueDetail` into `IssueList`.
+- Redirects
+  - There's one last thing to take care of: a request to the home page (`/`), returns an HTML from the server that contains an empty page.
+  - React Router’s `StaticRouter` handles this by setting a variable called `url` in any context that is passed to it.
 
 ### troubleshooting
 

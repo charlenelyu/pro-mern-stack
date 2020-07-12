@@ -23,7 +23,7 @@ export default class IssueEdit extends React.Component {
     }`;
 
     const { params: { id } } = match;
-    const result = await graphQLFetch(query, { id }, showError);
+    const result = await graphQLFetch(query, { id: parseInt(id, 10) }, showError);
     return result;
   }
 
