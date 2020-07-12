@@ -23,6 +23,11 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 # Chapter 13
 
+In this chapter, I added some common features to the Issue Tracker application. First, I refactored the UI part to reuse common code across components that display the Toast messages. Following the higher order component (HOC) pattern, I moved most of the repeated code into a new component. Then, I built the Report page using the aggregate function of MongoDB to summarize data fetched from collections. I also added pagination in the Issue List page, which utilized the skip and offset options of find() in MongoDB. Further, I implemented an undo operation, and displayed a search bar in which the users can type keywords to look for issues.
+
+![ch13-1](/readme-images/ch13-1.png)
+![ch13-2](/readme-images/ch13-2.png)
+
 ### notes
 
 - Higher Order Component for Toast
