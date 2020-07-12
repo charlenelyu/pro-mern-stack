@@ -78,6 +78,9 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - In the schema, add a new mutation called `issueRestore`.
   - The actual implementation of the restore API is similar to the Delete API. The difference is that, instead of moving from the `issues` collection to the `deleted_issues` collection, it has to transfer an issue in the reverse direction.
   - In `api_handler.js`, tie the resolver to the API endpoint in the API handler.
+- Undo Delete UI
+  - The best place to initiate an undo delete operation is in the Toast message that shows that the issue has been deleted.
+  - In the `IssueList` component, include a button that can be clicked to initiate the undo. When the button is clicked, we’ll need to call the Restore API.
   
 ### troubleshooting
 
