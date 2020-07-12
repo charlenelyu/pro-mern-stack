@@ -32,6 +32,29 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - What we really need is something that creates a new component class from the existing component classes. Let’s create a function called `withToast` to do just this, like React Router’s `withRouter` function.
   - Now, wherever the original component is referred, we can simply use `withToast(...)` instead. This pattern is called *Higher Order Component (HOC)*.
   - Change `IssueList`, `IssueEdit`, `IssueAddNavItem` components to use the `withToast` HOC.
+- MongoDB Aggregate
+  - In preparation for implementing the Report page in the next two sections, we'll explore what MongoDB provides in terms of getting summary data of a collection, that is, *aggregates*.
+  - Create more issues in the database so that summaries can look meaningful.
+    - Add a Mongo shell script `generate_data.mongo.js` to generate some data.
+    - Run this script once to populate the database with 100 new issues via `mongo issuetracker scripts/generate_data.mongo.js`.
+  - MongoDB provides the collection method `aggregate()` to summarize and perform various other read tasks on the collection using a *pipeline*.
+    - The default call to `aggregate()` without any arguments is identical to a call to `find()`, which returns the entire list of documents in the collection without any manipulation.
+    - The MongoDB aggregation pipeline consists of stages. Each stage transforms the documents as they pass through the pipeline.
+    - Each stage does not have to produce a one-to-one mapping of the previous stage. (e.g. `group` and `unwind`)
+    - The `aggregate()` method takes a single parameter, an array of pipeline stage specifications. Each stage specification is an object with a key indicating the type of the stage and the value holding the parameters for the stage.
+  - For the Report page, let’s create a pivot table output that shows the counts of issues assigned to various owners, further grouped by statuses.
+- Issue Counts API
+  - In this section, we'll implement the API that will help build the Report page.
+  - In `schema.graphql`, add the new API.
+  - In `issue.js`, place the resolver of the API called `count()`, which takes in a filter specification.
+    - Process each of the documents returned by the database and update an object called `stats`.
+    - Return an array to the caller by simply calling `Object.values(stats)`.
+    - Add it as another exported value.
+  - In `api_handler.js`, specify the resolver for the endpoint `issueCounts`.
+  
+### troubleshooting
+
+- Page 436 Listing 13-5: line `'Lorem ipsum dolor sit amet, ${i}'` should be `` `Lorem ipsum dolor sit amet, ${i}` ``
 
 ## Chapter 12
 
