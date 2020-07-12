@@ -44,7 +44,9 @@ const env = { UI_API_ENDPOINT };
 app.get('/env.js', (req, res) => {
   res.send(`window.ENV = ${JSON.stringify(env)}`);
 });
-app.get('/about', render);
+app.get('/about', (req, res, next) => {
+  render(req, res, next);
+});
 app.get('*', (req, res) => {
   res.sendFile(path.resolve('public/index.html'));
 });
@@ -54,3 +56,7 @@ const port = process.env.UI_SERVER_PORT || 8000;
 app.listen(port, () => {
   console.log(`UI started on port ${port}`);
 });
+
+if (module.hot) {
+  module.hot.accept('./render.jsx');
+}

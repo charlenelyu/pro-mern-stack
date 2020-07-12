@@ -72,6 +72,17 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - In `package.json`, change the scripts section to use the bundle to start the server instead of the file `uiserver.js`.
   - Remove the manually generated `About.js`.
   - Build the server bundle via `npx webpack`.
+- HMR for the Server
+  - Although using Webpack for the server simplifies the compilation process, we still need to restart the server for every change.
+  - The solution is to automatically reload the modules in the back-end using HMR, but setting this up is quite complex.
+  - We’ll only reload changes to modules based on the shared folder. As for changes to `uiserver.js`, we'll restart the server manually and use HMR for the rest of the code that it includes.
+    - Create a new Webpack configuration called `webpack. serverHMR.js` that enables HMR for the server.
+      - Rather than copy the entire configuration file and make changes to it, we can base on the original configuration and merge the changes required for HMR using package `webpack-merge`.
+      - In `webpack. serverHMR.js`, first load up `serverConfig` from `webpack.config.js`, then merge the `serverConfig` with new changes.
+    - Run Webpack with this file as the configuration with the `watch` option (`npx webpack -w --config webpack.serverHMR.js`).
+    - In `uiserver.js`, make the server to accept changes.
+    - In `package.json`, change the script section to add convenience scripts for starting the UI server.
+  - Now, a single command `npm run dev-all` will automatically reflect most changes without having to restart this command.
 
 ### troubleshooting
 
