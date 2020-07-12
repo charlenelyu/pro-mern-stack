@@ -83,6 +83,18 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - In `uiserver.js`, make the server to accept changes.
     - In `package.json`, change the script section to add convenience scripts for starting the UI server.
   - Now, a single command `npm run dev-all` will automatically reflect most changes without having to restart this command.
+- Server Router
+  - On the server, wrapping a Router around the page, or using `Switch` or `NavLinks`, will throw up errors.
+  - On the server, React Router recommends that we use a `StaticRouter` in place of a `BrowserRouter`. Also, whereas the `BrowserRouter` looks at the browser’s URL, the `StaticRouter` has to be supplied the URL.
+    - `StaticRouter` takes a property called `location`, which is a static URL. It also needs a property called `context`, for now, we'll just supply an empty object for it.
+  - Modify `render.jsx` to render the `Page` component instead of the `About` component, but wrapped around by a `StaticRouter`.
+  - Now, we will find that both server rendering and browser rendering are identical for the `About` page:  the navigation bar will appear in both cases.
+- Hydrate
+  - Although the page looks good, what is rendered is pure HTML markup, without any JavaScript code or event handlers. Thus, there is no user interaction possible in the page.
+  - In order to attach event handlers, we have to include the source code and let React take control of the rendered page.
+    - Add scripts to `template.js`.
+    - In `App.jsx`, change `render()` to `hydrate()` as recommended.
+  - This step completes the server rendering sequence of events.
 
 ### troubleshooting
 

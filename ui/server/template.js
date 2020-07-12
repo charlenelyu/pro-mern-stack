@@ -16,6 +16,10 @@ export default function template(body) {
 <body>
   <!-- Page generated from template. -->
   <div id="content">${body}</div>
+
+  <script src="/env.js"></script>
+  <script src="/vendor.bundle.js"></script>
+  <script src="/app.bundle.js"></script>
 </body>
 
 </html>
