@@ -95,10 +95,40 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - Add scripts to `template.js`.
     - In `App.jsx`, change `render()` to `hydrate()` as recommended.
   - This step completes the server rendering sequence of events.
+- Data from API
+  - In reality, messages in the `About` component should come from the API server. This means that we need to be able to make requests to the API server via `graphQLFetch()` from the server as well.
+  - To achieve this, we need to replace the `whatwg-fetch` module with a package called `isomorphic-fetch` that can be used both on the browser as well as Node.js.
+  - In `graphQLFetch.js`, we currently have the API endpoint specification in `window.ENV.UI_API_ENDPOINT`, which will not work on the server because there is no variable called `window`. We’ll need to use `process.env` variables.
+    - To indicate whether the function is being called in the browser or in Node.js, use Webpack’s plugin called `DefinePlugin` to define a global variable called `__isBrowser__`, which is set to `true` in a browser bundle, but `false` in the server bundle.
+    - In `uiserver.js`, set `process.env` if it’s not set.
+    - In `.env`, add the new environment variable.
+  - In `graphQLFetch.js`, use `isomorphic-fetch` to get the correct API endpoint from `process.env` or from `window.ENV`.
+  - Now, before calling `renderToString()`, we can make a call to get the data from the About API via `graphQLFetch()`.
+    - To pass the information down to the `About` component while it's being rendered, we need to create a global store for all data.
+    - Create a global storage module in the `src` directory called `store.js`, which exports an empty object.
+    - In `render.jsx`, call `graphQLFetch()` to get the initial data, and save the data to the global store.
+  - In `About.jsx`, read data from the global store to display the real API version.
+  - When test the About page, there will be an error `Text content did not match. Server: "Issue Tracker API v1.0" Client: "unknown"`
+- Syncing Initial Data
+  - What we need to do is to make the browser render identical to the server render. The recommended way is to pass the same initial data resulting from the API call to the browser in the form of a script and use that to initialize the global store.
+  - Change `template.js` so that it takes an additional argument (the initial data) and sets it in a global variable in a `<script>` section.
+  - In `render.jsx`, pass the initial data to the browser.
+  - In `app.jsx`, use initial data to initialize the global store.
+  - Now, when test the About page, the React error message is no longer shown. But the other pages will still show an error `Expected server HTML to contain a matching <div> in <div>`
+- Common Data Fetcher
+  - In this section, we'll add a `componentDidMount()` method in the `About` component, which be converted to a regular component from a stateless function.
+    - Use a state variable called `apiAbout` to store and display the API version.
+    - Initialize this variable in the constructor from the global store if it has the initial data, set it to `null` if the initial data is missing.
+    - Use a common static function called `fetchData()` to fetch the data that can be shared by the `About.jsx` as well as by `render.jsx`.
+    - In the `componentDidMount()` method, data can be fetched and set in the state if `apiAbout` has not been initialized by the constructor.
+    - In the `render()` method, use the state variable rather than the variable from the store.
+  - In `render.jsx`, replace the GraphQL query with a call to `About.fetchData()`.
 
 ### troubleshooting
 
 - Page 379 Listing 12-3: `rules`, `error`, `always` and `ignorePackages` need to be double quoted.
+- Page 401 Listing 12-29: line `process.env.UI_API_ENDPOINT = process.env.UI_API_ENDPOINT;` should be `process.env.UI_SERVER_API_ENDPOINT = process.env.UI_API_ENDPOINT;`
+- Page 407 Listing 12-39: line `const resultData = About.fetchData();` should be `const initialData = About.fetchData();`
 
 ## Chapter 11
 
