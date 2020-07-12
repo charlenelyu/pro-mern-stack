@@ -81,10 +81,33 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 - Undo Delete UI
   - The best place to initiate an undo delete operation is in the Toast message that shows that the issue has been deleted.
   - In the `IssueList` component, include a button that can be clicked to initiate the undo. When the button is clicked, we’ll need to call the Restore API.
+- Text Index API
+  - In the remaining part, we'll implement an autocomplete search bar that finds all issues matching the words typed, and lets the user pick one of them to directly view.
+  - MongoDB’s text index let us quickly get to all the documents that contain a certain term.
+    - A text index gathers all the words in all the documents and creates a lookup table that returns all documents containing a certain word.
+    - The command that creates an index looks like `db.issues.createIndex({ title: "text" })`
+    - The command that looks for issues with a certain term looks like `db.issues.find({ $text: {$search: "click" } })`
+    - `db.issues.getIndexes()` gets indexes that are currently in existence.
+    - `db.issues.dropIndex('title_text')` drops an index.
+  - Save the index in `init.mongo.js`
+  - In the GraphQL schema, add one more filter option for the search string.
+  - In `issue.js`, change the list resolver to use the new parameter to search for documents.
+- Search Bar
+  - We'll use React Select instead of implementing the search bar ourselves.
+    - React Select needs two callbacks to show the options: `loadOptions` and `filterOptions`.
+    - The first is an asynchronous method that needs to return an array of options. Each option is an object with the properties `label` and `value`, the `label` being what the user sees and the `value` being a unique identifier.
+    - The second callback is expected to be called for each of the returned options to determine whether or not to show the option in the dropdown.
+  - Create a new component that will display a React Select and implement the methods required to fetch the documents.
+  - Next, we need to take an action when the user selects one of the displayed issues. React Select provides an `onChange` property, which is a callback that is called when the user selects an item, with the value of the selected item as an argument.
+  - Add a few more useful properties to the React Select control, including `instanceId`, `DropdownIndicator` and `value`.
+  - In case of errors, wrap the component with `withToast` and supply the `showError` function to the GraphQL fetch function.
+  - In `Page.jsx`, add the new component between the two `<Nav>`s.
+  - To avoid the search control occupying the entire header, wrap the Search component with a `<div>` or something that restricts the width. Instead of a fixed width, use React-Bootstrap’s `Col` component.
   
 ### troubleshooting
 
 - Page 436 Listing 13-5: line `'Lorem ipsum dolor sit amet, ${i}'` should be `` `Lorem ipsum dolor sit amet, ${i}` ``
+- Page 467 Listing 13-24: line `history.push('/edit/${value}');` should be ``history.push(`/edit/${value}`);``
 
 ## Chapter 12
 
