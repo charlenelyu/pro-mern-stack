@@ -167,8 +167,9 @@ class IssueList extends React.Component {
           <Button bsStyle="link" onClick={() => this.restoreIssue(id)}>
             UNDO
           </Button>
-        </span> );
-        showSuccess(undoMessage);
+        </span>
+      );
+      showSuccess(undoMessage);
     } else {
       this.loadData();
     }
