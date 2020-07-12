@@ -54,6 +54,24 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
       - It will take in a regular request and response like any Express route handler.
       - It will send out the template as a response, with the body replaced by the markup created from `ReactDOMServer.renderToString()`.
     - In `uiserver.js`, add a new route for `/about` to return server-rendered About page,set the `render()` function as the handler for this route.
+- Webpack for the Server
+  - It's inconvient to compile JSX files manually.
+  - It's also not convenient when `import/export` paradigm and `require/module.exports` paradigm are mixed together, since we have to remember adding the `.default` after every `require()` of a file that uses the `import/export` paradigm.
+  - It turns out that Webpack can be used for the server to compile JSX on the fly. It will also let us consistently use the `import/export` paradigm in the UI server codebase.
+    - Webpack works quite the same as with the front-end code, but for one difference.
+    - Many server-side Node packages such as Express are not compatible with Webpack. So, we’ll have to exclude the third-party libraries from the bundle and rely on `node_modules` to be present in the UI server’s file system.
+  - First, add server configuration to the `webpack.config.js` file.
+    - The `browserConfig` variable contains the original configuration contents, except some changes to the Babel configuration.
+    - As for the `browserConfig` variable, we’ll need an output specification. Let’s compile the bundle into a new directory called `dist` and call the bundle `server.js`.
+    - We also need to exclude the modules in `node_modules` using the `webpack-node-externals` module.
+  - Now, we are ready to convert all `require()` statements to `import` statements.
+    - In `ui/server/.eslintrc`, add a rule to disable import extention.
+    - Change `template.js` to use the `import/export` paradigm.
+    - Change the extension of `render.js` to `render.jsx`, replace `React.createElement()` with JSX, change all `require()` statements to `import` statements.
+    - In `uiserver.js`, change all `require()` statements to `import`, change the HMR initialization routine, use `source-map-support` to make error messages more readable.
+  - In `package.json`, change the scripts section to use the bundle to start the server instead of the file `uiserver.js`.
+  - Remove the manually generated `About.js`.
+  - Build the server bundle via `npx webpack`.
 
 ### troubleshooting
 
