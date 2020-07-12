@@ -25,6 +25,14 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ### notes
 
+- Higher Order Component for Toast
+  - To reduce code repetition across the main views for showing and managing Toast messages, let’s create a new component called `ToastWrapper` that wraps each of the main views to add the Toast functionality.
+  - Move all the state variables relating to the Toast into the this component and the `dismissToast` method.
+  - Within the original component, we need a way to show the error, and dismiss it if required. Let's create the `showError` and `showSuccess` methods in `ToastWrapper` and pass them as props. Also include any other props that the parent may want to pass through.
+  - What we really need is something that creates a new component class from the existing component classes. Let’s create a function called `withToast` to do just this, like React Router’s `withRouter` function.
+  - Now, wherever the original component is referred, we can simply use `withToast(...)` instead. This pattern is called *Higher Order Component (HOC)*.
+  - Change `IssueList`, `IssueEdit`, `IssueAddNavItem` components to use the `withToast` HOC.
+
 ## Chapter 12
 
 In this chapter, I explored server rendering, which generates the entire HTML source on the server and sends it to the browser. The book combined server rendering with browser rendering in a way that optimizes the advantages of both. Making sure that the browser render is identical to the server render is the primary complicating factor in this chapter. Both must share data that has been retrieved by the API.
