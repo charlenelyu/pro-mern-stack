@@ -134,6 +134,15 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
       - change `Contents.jsx` to generate `<Route>` components from `routes.js`).
   - We still need to replace the call to `About.fetchData()` with something more generic.
     - To do that, we need to use a function called `matchPath()` to determine which of the components would match the current URL that is passed in via the request object in `render.jsx`.
+- Data Fetcher with Parameters
+  - In this section, we’ll make the `IssueEdit` component render from the server with the data that it requires prepopulated.
+    - Separate the data fetcher into a static method as we had done in the `About` component. This method relies on the ID of the issue to fetch the data.
+    - In the constructor, check if there is any initial data and use that to initialize the state variable `issue`. Set the state variable to `null` to indicate that it was not preloaded from the server. Delete the data from the store once we’ve consumed it.
+    - In the `componentDidMount()` method, look for the presence of the state variable. If it is not `null`, it means that it was rendered from the server. If it’s `null`, it means that the user navigated to this component in the browser from a different page. In this case, we can load the data using `fetchData()`.
+    - In the `loadData()` method, replace the original call to `graphQLfetch()` with a call to `fetchData()`.
+    - In the render() method, return `null` if the issue state variable is `null`.
+  - In `render.jsx`, pass in the `match` parameter at the time of server rendering.
+  - In `template.js`, replace `JSON.stringify()` with the serialize function.
 
 ### troubleshooting
 
