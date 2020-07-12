@@ -66,6 +66,13 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - We also need a count of pages, which needs the count of documents matching this filter.  MongoDB allows us to query the cursor itself for the number of documents it matched.
     - Return both the issues list as well as the page count in the return value.
   - Change the `IssueList` component to accommodate the change.
+- Pangination UI
+  - In this section, we'll use the new API to display a bar of pages. We'll create our own minimalistic pagination bar instead of using React-Bootstrap's pagination.
+  - In the `IssueList` component:
+    - Modify the data fetcher to include the total count of pages in the query and save it in the state.
+    - In the constructor and the `loadData()` method, set state variables using `data.issueList.issues` (list of issues) and `data.issueList.pages` (total count of pages).
+    - In the `render()` function, generate a series of page links and lay out the pagination bar.
+  - In `Toast.jsx`, set the toast’s z-index so that it always shows on top.
   
 ### troubleshooting
 
