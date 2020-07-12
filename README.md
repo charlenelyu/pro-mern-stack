@@ -4,6 +4,7 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ## Table of Contents
 
+- [Chapter 13: Advanced Features](#chapter-13)
 - [Chapter 12: Server Rendering](#chapter-12)
 - [Chapter 11: React-Bootstrap](#chapter-11)
 - [Chapter 10: React Forms](#chapter-10)
@@ -20,6 +21,10 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 # Chapter Notes
 
+# Chapter 13
+
+### notes
+
 ## Chapter 12
 
 In this chapter, I explored server rendering, which generates the entire HTML source on the server and sends it to the browser. The book combined server rendering with browser rendering in a way that optimizes the advantages of both. Making sure that the browser render is identical to the server render is the primary complicating factor in this chapter. Both must share data that has been retrieved by the API.
@@ -29,6 +34,9 @@ Even though I followed every step through the chapter, I couldn't get the initia
 ![ch12](/readme-images/ch12.png)
 
 ### notes
+
+<details>
+<summary>click for details</summary>
 
 - Introduction
   - Server Rendering: the entire HTML is constructed on the server and sent to the browser.
@@ -169,6 +177,8 @@ Even though I followed every step through the chapter, I couldn't get the initia
 - Redirects
   - There's one last thing to take care of: a request to the home page (`/`), returns an HTML from the server that contains an empty page.
   - React Router’s `StaticRouter` handles this by setting a variable called `url` in any context that is passed to it.
+
+</details>
 
 ### troubleshooting
 
