@@ -2,6 +2,7 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const proxy = require('http-proxy-middleware');
+const render = require('./render.js');
 
 const app = express();
 
@@ -38,6 +39,7 @@ const env = { UI_API_ENDPOINT };
 app.get('/env.js', (req, res) => {
   res.send(`window.ENV = ${JSON.stringify(env)}`);
 });
+app.get('/about', render);
 app.get('*', (req, res) => {
   res.sendFile(path.resolve('public/index.html'));
 });

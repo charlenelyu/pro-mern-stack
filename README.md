@@ -24,6 +24,15 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ### notes
 
+- Introduction
+  - Server Rendering: the entire HTML is constructed on the server and sent to the browser.
+  - Browser Rendering: fetch data via APIs and construct the DOM on the browser.
+  - The need for server rendering arises when the application needs to be indexed by search engines.
+    - Search engines typically start from the root URL and then traverse all the hyperlinks present in the resulting HTML. They don't execute JavaScript to fetch data via Ajax calls and look at the changed DOM.
+    - To have pages from an application be properly indexed by search engines, the server needs to respond with the same HTML that will result after the Ajax call in `componentDidMount()` methods and subsequent re-rendering of the page.
+  - For the Issue Tracker application, we’ll make it work is as follows:
+    - use server rendering when any page is opened for the first time (by typing in URL or refreshing);
+    - use browser rendering once any page is loaded and the user navigates to another page.
 - New Directory Structure
   - Split current source code into three directories
     - keep the shared React components in `src`
@@ -34,6 +43,17 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - Add a `.babelrc` in the `browser` directory, which is a copy of the one in the `src` directory.
     - In `App.jsx` and `uiserver.js`, change the location of the imported/required files.
     - Change the entry points in `package.json` for the new location of `uiserver.js`, and in `webpack.config.js` for the new location of `App.jsx`.
+- Basic Server Rendering
+  - The `ReactDOMServer.renderToString()` method is used to create an HTML on the server side.
+  - In this section, we'll create a simple `About` page to get familiar with the fundamentals.
+    - Create a new `About` component, include it in the application.
+    - Compile `About.jsx` manually to pure JavaScript via `npx babel src/About.jsx --out-dir server`.
+    - Create a new file `template.js` under the `server` directory to build the HTML.
+      - It makes a template out of the `index.html` that can accept the contents of the `<div>` and return the complete HTML.
+    - Create a new file `render.js` in the `server` directory for importing `About.js` rendering it to string.
+      - It will take in a regular request and response like any Express route handler.
+      - It will send out the template as a response, with the body replaced by the markup created from `ReactDOMServer.renderToString()`.
+    - In `uiserver.js`, add a new route for `/about` to return server-rendered About page,set the `render()` function as the handler for this route.
 
 ### troubleshooting
 
