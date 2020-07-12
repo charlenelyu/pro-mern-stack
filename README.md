@@ -73,6 +73,11 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - In the constructor and the `loadData()` method, set state variables using `data.issueList.issues` (list of issues) and `data.issueList.pages` (total count of pages).
     - In the `render()` function, generate a series of page links and lay out the pagination bar.
   - In `Toast.jsx`, set the toast’s z-index so that it always shows on top.
+- Undo Delete API
+  - The next feature that we’ll implement is an undo action on the delete operation. In this section, we’ll implement the API required for this.
+  - In the schema, add a new mutation called `issueRestore`.
+  - The actual implementation of the restore API is similar to the Delete API. The difference is that, instead of moving from the `issues` collection to the `deleted_issues` collection, it has to transfer an issue in the reverse direction.
+  - In `api_handler.js`, tie the resolver to the API endpoint in the API handler.
   
 ### troubleshooting
 
