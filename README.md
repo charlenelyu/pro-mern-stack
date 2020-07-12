@@ -140,9 +140,18 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - In the constructor, check if there is any initial data and use that to initialize the state variable `issue`. Set the state variable to `null` to indicate that it was not preloaded from the server. Delete the data from the store once we’ve consumed it.
     - In the `componentDidMount()` method, look for the presence of the state variable. If it is not `null`, it means that it was rendered from the server. If it’s `null`, it means that the user navigated to this component in the browser from a different page. In this case, we can load the data using `fetchData()`.
     - In the `loadData()` method, replace the original call to `graphQLfetch()` with a call to `fetchData()`.
-    - In the render() method, return `null` if the issue state variable is `null`.
+    - In the `render()` method, return `null` if the issue state variable is `null`.
   - In `render.jsx`, pass in the `match` parameter at the time of server rendering.
   - In `template.js`, replace `JSON.stringify()` with the serialize function.
+- Data Fetcher with Search
+  - In this section, we’ll implement the data fetcher in the `IssueList` component, where the search (query) string is needed for fetching the correct set of issues.
+  - In `render.jsx`, pass the query string in addition to the `match` object to `fetchData()`.
+  - In `IssueList.jsx`:
+    - Create the data fetcher, move the required code from the `loadData()` method into this new static method.
+    - In the `loadData()` method, use this data fetcher instead of making the query directly.
+    - In the constructor, use the store and the initial data to set the initial set of issues, delete it once we have consumed it.
+    - In the `componentDidMount()` method, avoid loading the data if the state variable has a valid set of issues.
+    - In the `render()` method, skip rendering if the state variable issues is set to `null`.
 
 ### troubleshooting
 
