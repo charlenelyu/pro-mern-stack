@@ -51,6 +51,11 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - Return an array to the caller by simply calling `Object.values(stats)`.
     - Add it as another exported value.
   - In `api_handler.js`, specify the resolver for the endpoint `issueCounts`.
+- Report Page
+  - For the Report page, We’ll use a format known as a cross-tab or a pivot table: a table with one axis labeled with the statuses and the other axis with owners.
+  - In `IssueFilter.jsx`, change the hard-coded navigation of the Apply button by passing in the base URL as props.
+  - In `IssueList.jsx`, pass in the new property.
+  - Build the `IssueReport` component.
   
 ### troubleshooting
 
