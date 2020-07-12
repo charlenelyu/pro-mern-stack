@@ -56,6 +56,16 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - In `IssueFilter.jsx`, change the hard-coded navigation of the Apply button by passing in the base URL as props.
   - In `IssueList.jsx`, pass in the new property.
   - Build the `IssueReport` component.
+- List API with Pagination
+  - In this section, we’ll modify the List API to support pagination on the Issue List page.
+  - Modify the schema to add a count of pages in addition to the list of issues.
+  - In `issue.js`, add pagination support to List API.
+    - Use the new parameter `page` to skip to the given page and limit the number of objects returned.
+    - The MongoDB cursor method `skip()` can be used to get the list of documents starting at an offset. The `limit()` cursor method can be used to limit the output to a certain number.
+    - Whenever we use an offset, we need to ensure that the list is in the same order when queried multiple times. To guarantee a certain order, include a sort specification using `id` as the sort key.
+    - We also need a count of pages, which needs the count of documents matching this filter.  MongoDB allows us to query the cursor itself for the number of documents it matched.
+    - Return both the issues list as well as the page count in the return value.
+  - Change the `IssueList` component to accommodate the change.
   
 ### troubleshooting
 
