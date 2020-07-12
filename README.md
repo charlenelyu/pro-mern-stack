@@ -152,6 +152,14 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - In the constructor, use the store and the initial data to set the initial set of issues, delete it once we have consumed it.
     - In the `componentDidMount()` method, avoid loading the data if the state variable has a valid set of issues.
     - In the `render()` method, skip rendering if the state variable issues is set to `null`.
+- Nested Components
+  - In this section, we'll deal with the `IssueDetail` component.
+  - Although React Router’s dynamic routing works great when navigating via links in the UI, when it comes to server rendering, we cannot easily deal with nested routes.
+    - One option is to add nesting of routes in `routes.js` and pass the nested route object to the containing component.
+    - Another alternative is that the route specification for `IssueList` includes an optional Issue ID, and this component deals with the loading of the detail part too.
+  - We'll choose to modify the component `IssueList` to render its contained detail as well. This will cause the `IssueDetail` component to be greatly simplified to a stateless component.
+  - In `routes.js`, Modify the `/issues` route to specify the ID parameter, which is optional.
+  - Pull Up `IssueDetail` into `IssueList`.
 
 ### troubleshooting
 
