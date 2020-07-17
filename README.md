@@ -4,6 +4,7 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ## Table of Contents
 
+- [Chapter 14: Authentication](#chapter-14)
 - [Chapter 13: Advanced Features](#chapter-13)
 - [Chapter 12: Server Rendering](#chapter-12)
 - [Chapter 11: React-Bootstrap](#chapter-11)
@@ -21,6 +22,19 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 # Chapter Notes
 
+# Chapter 14
+
+### notes
+
+- Sign-In UI
+  - In this section, we'll build the necessary user interface for signing in users.
+  - In the navigation bar, add an item with the label "Sign In" on the right side. On clicking this, show a modal dialog that lets the user sign in using a button. On successful sign-in, show the user’s name instead of the Sign In menu item, with a dropdown menu that lets the user sign out.
+    - Create a new component called `SignInNavItem` which can be placed in the navigation bar.
+    - The state variables and some methods for showing the modal are very similar to the component `IssueAddNavItem`.
+    - Use a state variable called `user` to save the signed-in status (`signedIn`) and the name of the user (`givenName`).
+    - If the state variable indicates that the user is already signed in, the `render()` method returns a dropdown. If the user is not signed in, the `render()` method returns the menu item for signing in as well as a modal dialog to show a Sign In button.
+    - In `Page.jsx`, include the item in the navigation bar.
+
 # Chapter 13
 
 In this chapter, I added some common features to the Issue Tracker application. First, I refactored the UI part to reuse common code across components that display the Toast messages. Following the higher order component (HOC) pattern, I moved most of the repeated code into a new component. Then, I built the Report page using the aggregate function of MongoDB to summarize data fetched from collections. I also added pagination in the Issue List page, which utilized the skip and offset options of find() in MongoDB. Further, I implemented an undo operation, and displayed a search bar in which the users can type keywords to look for issues.
@@ -29,6 +43,9 @@ In this chapter, I added some common features to the Issue Tracker application. 
 ![ch13-2](/readme-images/ch13-2.png)
 
 ### notes
+
+<details>
+<summary>click for details</summary>
 
 - Higher Order Component for Toast
   - To reduce code repetition across the main views for showing and managing Toast messages, let’s create a new component called `ToastWrapper` that wraps each of the main views to add the Toast functionality.
@@ -108,7 +125,9 @@ In this chapter, I added some common features to the Issue Tracker application. 
   - In case of errors, wrap the component with `withToast` and supply the `showError` function to the GraphQL fetch function.
   - In `Page.jsx`, add the new component between the two `<Nav>`s.
   - To avoid the search control occupying the entire header, wrap the Search component with a `<div>` or something that restricts the width. Instead of a fixed width, use React-Bootstrap’s `Col` component.
-  
+
+</details>
+
 ### troubleshooting
 
 - Page 436 Listing 13-5: line `'Lorem ipsum dolor sit amet, ${i}'` should be `` `Lorem ipsum dolor sit amet, ${i}` ``
