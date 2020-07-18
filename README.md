@@ -51,6 +51,15 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - In `uiserver.js`, add the new endpoint prefix `/auth`.
     - In `SignInNavItem.jsx`, obtain the token by a call to `googleUser.getAuthResponse().id_token`, pass this token to the signin API, gather the resultant JSON, and use the `givenName` field to set the state variable `givenName`.
     - Make change to the `.env` file to switch to proxy mode (temporarily).
+- JSON Web Tokens
+  - Although we verified the token and used the name from the back-end, we didn't persist the information. The information about the sign-in would disappear on a browser refresh. Further, other APIs can't apply any authorization restrictions.
+  - One way to persist the authentication information is by creating a session on the back-end, identified by a cookie. This can be done using the middleware `express-session`, which adds a property in the request called `req.session`.
+  - JSON Web Tokens (JWT) can encode all the session information that needs to be stored in a token. The token string has all the information, but the information is encrypted so that it cannot be snooped upon or impersonated.
+  - In this section, we’ll establish a session that persists even across server restarts. We’ll use JWT to generate a token and send it back to the browser. On every API call that the UI makes, this token will need to be included, identifying the signed-in user.
+    - To generate the JWT in the signin API, we need to install `jsonwebtoken` and `cookie-parser`.
+    - In `server.js`, include `cookie-parser` globally for all routes.
+    - In `auth.js`: generate a JWT in the signin API via a call to the `sign()` function provided by the `jsonwebtoken` package, and set it as a cookie; create a new API to get the current logged-in status.
+    - In `SignInNavItem.jsx`, fetch the authentication information via a call to the `/auth/user` API in the `componentDidMount()` method, and set the state.
 
 # Chapter 13
 
