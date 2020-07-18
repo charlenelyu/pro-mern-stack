@@ -34,6 +34,13 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - Use a state variable called `user` to save the signed-in status (`signedIn`) and the name of the user (`givenName`).
     - If the state variable indicates that the user is already signed in, the `render()` method returns a dropdown. If the user is not signed in, the `render()` method returns the menu item for signing in as well as a modal dialog to show a Sign In button.
     - In `Page.jsx`, include the item in the navigation bar.
+- Google Sign-In
+  - In this section, we'll replace the Sign In button with a button to sign in using Google. Once signed in, we’ll use Google to retrieve the user’s name.
+  - Create a project and client ID folloing instructions on <https:// developers.google.com/identity/sign-in/web/sign-in>. Save the client ID in `.env`.
+  - The recommended method for integration listed in the guide doesn't work well with React. We must display the button ourselves following the guide titled "Customize the Sign-In Button".
+    - In `template.js`, include the google library.
+    - In `uiserver.js`, pass the Google client ID to the UI.
+    - With the `SignInNavItem` component, use the library and implement Google Sign-In.
 
 # Chapter 13
 
