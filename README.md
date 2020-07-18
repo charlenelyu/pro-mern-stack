@@ -22,6 +22,10 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 # Chapter Notes
 
+In this chapter, I implemented authentication and authorization for the Issue Tracker application. Users can view all information without signing in, but only signed-in users are allowed to make changes. I saw how JWT can be used to persist session information in a stateless, yet secure manner. Then, I saw how authorization works with GraphQL APIs and how it can be extended to perform different authorization checks based on the application’s needs. I also learned how CORS and cookie handling restrictions on the browser come into play when the browser accesses the APIs directly.
+
+![ch14](/readme-images/ch14.png)
+
 # Chapter 14
 
 ### notes
@@ -36,7 +40,7 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - In `Page.jsx`, include the item in the navigation bar.
 - Google Sign-In
   - In this section, we'll replace the Sign In button with a button to sign in using Google. Once signed in, we’ll use Google to retrieve the user’s name.
-  - Create a project and client ID folloing instructions on <https:// developers.google.com/identity/sign-in/web/sign-in>. Save the client ID in `.env`.
+  - Create a project and client ID folloing instructions on <https://developers.google.com/identity/sign-in/web/sign-in>. Save the client ID in `.env`.
   - The recommended method for integration listed in the guide doesn't work well with React. We must display the button ourselves following the guide titled "Customize the Sign-In Button".
     - In `template.js`, include the google library.
     - In `uiserver.js`, pass the Google client ID to the UI.
