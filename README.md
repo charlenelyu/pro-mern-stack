@@ -88,6 +88,14 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - Now, all descendants can access the user context.
     - Modify `IssueEdit.jsx` to disable the Submit button based on user context.
     - In `IssueTable.jsx`, convert `IssueRow` to regular component for consuming user context.
+- CORS with Credentials
+  - In this section, we’ll see how we can get the application to work in the non-proxy mode by relaxing the CORS options, at the same time maintaining security.
+  - The default configuration of the Apollo Server enabled CORS and allowed requests to `/graphql`. But since it was not done on `/auth`, it was blocked. The `cors` package lets us to enable CORS for the `/auth` set of routes.
+    - After installing the `cors` package, import this package and add a middleware in `auth.js`.
+  - The default CORS configuration seems to allow requests, but does not allow cookies to be sent for cross-origin requests. To let credentials also be passed to cross-origins, the following must be done:
+    - All XHR calls (calls using the API `fetch()`) must include the header `credentials: 'include'`
+    - The CORS middleware should include an origin as a configuration option.
+    - Another CORS configuration option called `credentials` must be set to true.
 
 # troubleshooting
 
