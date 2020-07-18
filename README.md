@@ -26,7 +26,7 @@ In this chapter, I implemented authentication and authorization for the Issue Tr
 
 ![ch14](/readme-images/ch14.png)
 
-# Chapter 14
+## Chapter 14
 
 ### notes
 
@@ -112,11 +112,11 @@ In this chapter, I implemented authentication and authorization for the Issue Tr
     - To open `/etc/hosts` in VSC, first open the `File>Open` dialog, then press the slash key (`/`) to open another dialog that allows us to specify a directory manually. Write `/etc` to navigate to the directory, then select the `hosts` file to edit it.
   - Modify `.env` so that the API endpoint is based on <api.promernstack.com:3000>, then use <ui.promernstack.com:8000> to access the application.
 
-# troubleshooting
+### troubleshooting
 
 - Page 490 Listing 14-15: In order to sign out correctly, the domain should be included in the clearCookie response from the server. Change line `res.clearCookie('jwt')` to `res.clearCookie('jwt', { domain: process.env.COOKIE_DOMAIN, });`
 
-# Chapter 13
+## Chapter 13
 
 In this chapter, I added some common features to the Issue Tracker application. First, I refactored the UI part to reuse common code across components that display the Toast messages. Following the higher order component (HOC) pattern, I moved most of the repeated code into a new component. Then, I built the Report page using the aggregate function of MongoDB to summarize data fetched from collections. I also added pagination in the Issue List page, which utilized the skip and offset options of find() in MongoDB. Further, I implemented an undo operation, and displayed a search bar in which the users can type keywords to look for issues.
 
