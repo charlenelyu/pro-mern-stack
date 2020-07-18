@@ -60,6 +60,14 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - In `server.js`, include `cookie-parser` globally for all routes.
     - In `auth.js`: generate a JWT in the signin API via a call to the `sign()` function provided by the `jsonwebtoken` package, and set it as a cookie; create a new API to get the current logged-in status.
     - In `SignInNavItem.jsx`, fetch the authentication information via a call to the `/auth/user` API in the `componentDidMount()` method, and set the state.
+- Signing Out
+  - Signing out requires two things: the JWT cookie in the browser needs to be cleared and the Google authentication needs to be forgotten.
+  - In `auth.js`, implement another API under `/auth` to sign out, which will essentially just clear the cookie.
+  - In `SignInNavItem.jsx`, replace the trivial `signOut()` with a call to this API. Also call the Google authentication API’s `signOut()` function.
+
+# troubleshooting
+
+- Page 490 Listing 14-15: In order to sign out correctly, the domain should be included in the clearCookie response from the server. Change line `res.clearCookie('jwt')` to `res.clearCookie('jwt', { domain: process.env.COOKIE_DOMAIN, });`
 
 # Chapter 13
 
