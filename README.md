@@ -41,6 +41,16 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - In `template.js`, include the google library.
     - In `uiserver.js`, pass the Google client ID to the UI.
     - With the `SignInNavItem` component, use the library and implement Google Sign-In.
+- Verifying the Google Token
+  - In this section, we’ll ensure that the credentials are verified at the back-end. The technique to do this is described in the guide "Authenticate with a Backend Server" at <https://developers.google.com/identity/sign-in/web/backend-auth>.
+  - Essentially, the client authentication library returns a token on successful authentication, which can be verified at the back-end using Google’s authentication library for Node.js. We’ll need to send this token from the UI to the back-end for it to be verified.
+    - Create a new file `auth.js` in the API server to hold all authentication-related functions.
+    - In `auth.js`, implement a series of endpoints as Express routes, which will be exported and later mount in the main Express app.
+    - To achieve this, we need to install two libraries: `body-parser` that allows us to access the body of POST requests, and the Google authentication library `google-auth-library`.
+    - In `server.js`, mount auth routes in the main app at the path `/auth` in order to separate the namespace from `/graphql`. Thus, the full path to access the signin endpoint will be `/auth/signin`.
+    - In `uiserver.js`, add the new endpoint prefix `/auth`.
+    - In `SignInNavItem.jsx`, obtain the token by a call to `googleUser.getAuthResponse().id_token`, pass this token to the signin API, gather the resultant JSON, and use the `givenName` field to set the state variable `givenName`.
+    - Make change to the `.env` file to switch to proxy mode (temporarily).
 
 # Chapter 13
 
