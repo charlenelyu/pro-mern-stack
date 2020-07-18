@@ -71,6 +71,23 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - In `api_handler.js`, create the context that holds user information during initialization of the Apollo serve, and pass this context to each resolver as the third argument.
     - Rather than include the context and check for a valid user in each resolver, we'll reuse code by creating a new function in `auth.js`, which takes in a resolver and returns a function that does this check before executing the resolver.
     - Make changes to protected APIs to prevent unauthenticated access.
+- Authorization-Aware UI
+  - We also need to change the UI to disable operations that are unavailable.
+    - In this section, we’ll disable the Create Issue button in the navigation bar when the user is not signed in. We’ll lift the state up to a common ancestor and let the state flow down as props that can be used in the children.
+    - In the next section, we’ll use a different technique that’s more suitable for passing props to components very deep in the hierarchy.
+  - Convert the `Page` component into a regular component, move the state variable `user` from `SignInNavItem` to `Page`, pass the `user` variable down to the navigation bar, and further to the `NavItem`s include Create Issue and the Sign In.
+  - In the `IssueAddNavItem` component, check for the `signedIn` flag and disable the `NavItem` if it is `false`.
+  - In the `SignInNavItem` component, remove the state variable and use new props being passed in. Also, remove `loadData()` as this is being done along with the state in the `Page` component.
+- React Context
+  - In this section, We’ll disable the Close and Delete buttons in the Issue Table as well as the Submit button in the Edit page using the React Context API.
+    - The React Context API that can be used to pass properties across the component hierarchy without making intermediate components aware of it.
+  - In a new file called `UserContext`, create a user context that will be passed through to all components that need it.
+    - A context can be created using the `React.createContext()` method, which takes in an argument, the default value of the context.
+  - In `Page.jsx`, provide the user context.
+    - The created context exposes a component called `Provider`, which needs to be wrapped around any component hierarchy that needs the context. The component takes in a prop called `value`, which needs to be set to the value that the context will be set to in all descendent components.
+  - Now, all descendants can access the user context.
+    - Modify `IssueEdit.jsx` to disable the Submit button based on user context.
+    - In `IssueTable.jsx`, convert `IssueRow` to regular component for consuming user context.
 
 # troubleshooting
 
