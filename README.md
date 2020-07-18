@@ -96,6 +96,13 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
     - All XHR calls (calls using the API `fetch()`) must include the header `credentials: 'include'`
     - The CORS middleware should include an origin as a configuration option.
     - Another CORS configuration option called `credentials` must be set to true.
+- Server Rendering with Credentials
+  - Challenge 1: the initial data fetched for the user credentials goes to the `/auth` endpoint rather than the `/graphql` endpoint, but server rendering relies on the fact that all data fetching calls go through `graphQLFetch()`.
+  - Solution: use a new GraphQL API for the authenticated user credentials.
+  - Challenge 2: when the user data is fetched, the API call made by the UI server must include the cookie. When called from the UI, the browser would have added this cookie automatically.
+  - Solution: let all `fetchData()` static functions receive an optional parameter `cookie`, which can be passed through when any function calls `graphQLFetch()`.
+  - Challenge 3: the initial data that is fetched needs to be in addition to any other data fetched prior to rendering using `fetchData()` functions in the views.
+  - Solution: all global data fetches such as user credentials will have to be hard-coded while rendering on the server.
 
 # troubleshooting
 
