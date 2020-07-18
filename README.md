@@ -103,6 +103,10 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - Solution: let all `fetchData()` static functions receive an optional parameter `cookie`, which can be passed through when any function calls `graphQLFetch()`.
   - Challenge 3: the initial data that is fetched needs to be in addition to any other data fetched prior to rendering using `fetchData()` functions in the views.
   - Solution: all global data fetches such as user credentials will have to be hard-coded while rendering on the server.
+- Cookie Domain
+  - Create a domain and two sub-domains, both of which point to the localhost. This can be done by editing the `/etc/hosts` file and adding the following line: `127.0.0.1 api.promernstack.com ui.promernstack.com`.
+    - To open `/etc/hosts` in VSC, first open the `File>Open` dialog, then press the slash key (`/`) to open another dialog that allows us to specify a directory manually. Write `/etc` to navigate to the directory, then select the `hosts` file to edit it.
+  - Modify `.env` so that the API endpoint is based on <api.promernstack.com:3000>, then use <ui.promernstack.com:8000> to access the application.
 
 # troubleshooting
 
