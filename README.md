@@ -64,6 +64,13 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
   - Signing out requires two things: the JWT cookie in the browser needs to be cleared and the Google authentication needs to be forgotten.
   - In `auth.js`, implement another API under `/auth` to sign out, which will essentially just clear the cookie.
   - In `SignInNavItem.jsx`, replace the trivial `signOut()` with a call to this API. Also call the Google authentication API’s `signOut()` function.
+- Authorization
+  - For the Issue Tracker application, signed-in users are allowed to make changes, while unauthenticated users can only read the issues.
+  - In this section, we’ll prevent unauthorized modification by reporting an error when an unauthorized operation is attempted.
+  - Apollo Server provides a mechanism by which a *context* can be passed through to all resolvers.
+    - In `api_handler.js`, create the context that holds user information during initialization of the Apollo serve, and pass this context to each resolver as the third argument.
+    - Rather than include the context and check for a valid user in each resolver, we'll reuse code by creating a new function in `auth.js`, which takes in a resolver and returns a function that does this check before executing the resolver.
+    - Make changes to protected APIs to prevent unauthenticated access.
 
 # troubleshooting
 
