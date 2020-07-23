@@ -4,6 +4,7 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 ## Table of Contents
 
+- [Chapter 15: Deployment](#chapter-15)
 - [Chapter 14: Authentication](#chapter-14)
 - [Chapter 13: Advanced Features](#chapter-13)
 - [Chapter 12: Server Rendering](#chapter-12)
@@ -22,13 +23,16 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 # Chapter Notes
 
+## Chapter 14
+
 In this chapter, I implemented authentication and authorization for the Issue Tracker application. Users can view all information without signing in, but only signed-in users are allowed to make changes. I saw how JWT can be used to persist session information in a stateless, yet secure manner. Then, I saw how authorization works with GraphQL APIs and how it can be extended to perform different authorization checks based on the application’s needs. I also learned how CORS and cookie handling restrictions on the browser come into play when the browser accesses the APIs directly.
 
 ![ch14](/readme-images/ch14.png)
 
-## Chapter 14
-
 ### notes
+
+<details>
+<summary>click for details</summary>
 
 - Sign-In UI
   - In this section, we'll build the necessary user interface for signing in users.
@@ -111,6 +115,8 @@ In this chapter, I implemented authentication and authorization for the Issue Tr
   - Create a domain and two sub-domains, both of which point to the localhost. This can be done by editing the `/etc/hosts` file and adding the following line: `127.0.0.1 api.promernstack.com ui.promernstack.com`.
     - To open `/etc/hosts` in VSC, first open the `File>Open` dialog, then press the slash key (`/`) to open another dialog that allows us to specify a directory manually. Write `/etc` to navigate to the directory, then select the `hosts` file to edit it.
   - Modify `.env` so that the API endpoint is based on <api.promernstack.com:3000>, then use <ui.promernstack.com:8000> to access the application.
+
+</details>
 
 ### troubleshooting
 
