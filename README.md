@@ -23,6 +23,17 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 # Chapter Notes
 
+## Chapter 15
+
+My Issue Tracker on Heroku:
+
+<https://tracker-ui-charlenelyu.herokuapp.com>
+
+My deployment repos can be found here:
+
+<https://github.com/charlenelyu/tracker-api>
+<https://github.com/charlenelyu/tracker-ui>
+
 ## Chapter 14
 
 In this chapter, I implemented authentication and authorization for the Issue Tracker application. Users can view all information without signing in, but only signed-in users are allowed to make changes. I saw how JWT can be used to persist session information in a stateless, yet secure manner. Then, I saw how authorization works with GraphQL APIs and how it can be extended to perform different authorization checks based on the application’s needs. I also learned how CORS and cookie handling restrictions on the browser come into play when the browser accesses the APIs directly.
