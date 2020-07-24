@@ -27,12 +27,10 @@ This is my repository for the project described in the book Pro MERN Stack (2nd 
 
 In this chapter, I deployed the Issue Tracker application using the most popular Platform as a Service (PaaS), Heroku. First, I transferred from the local MongoDB database to MongoDB Atlas, which enables us to have a database on the cloud. Then, we created two GitHub repositories for API and UI, and deployed them to Heroku separately.
 
-My Issue Tracker on Heroku:
-
+My Issue Tracker on Heroku:  
 <https://tracker-ui-charlenelyu.herokuapp.com>
 
-My deployment repos can be found here:
-
+My deployment repos can be found here:  
 <https://github.com/charlenelyu/tracker-api>  
 <https://github.com/charlenelyu/tracker-ui>
 
