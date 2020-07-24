@@ -33,7 +33,7 @@ My Issue Tracker on Heroku:
 
 My deployment repos can be found here:
 
-<https://github.com/charlenelyu/tracker-api>
+<https://github.com/charlenelyu/tracker-api>  
 <https://github.com/charlenelyu/tracker-ui>
 
 ![ch15](/readme-images/ch15.png)
